@@ -1,4 +1,5 @@
 import Cover from "./components/Cover";
+import Greeting from "./components/Greeting";
 
 const weddingInfo = {
   groom: { name: "박민혁" },
@@ -10,6 +11,7 @@ export default function App() {
   return (
     <main className="invitation">
       <Cover info={weddingInfo} />
+      <Greeting />
     </main>
   );
 }

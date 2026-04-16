@@ -98,3 +98,10 @@ button {
   color: var(--muted);
   margin: 0;
 }
+
+/* Greeting */
+.greeting__body {
+  font-size: 15px;
+  color: var(--fg);
+  margin: 0;
+}
