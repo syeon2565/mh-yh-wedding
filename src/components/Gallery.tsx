@@ -35,7 +35,7 @@ export default function Gallery() {
             onClick={() => setOpenIdx(i)}
             aria-label={`사진 ${i + 1} 크게 보기`}
           >
-            <img src={src} alt={`커플 사진 ${i + 1}`} loading="lazy" />
+            <img src={src} alt="" loading="lazy" />
           </button>
         ))}
       </div>
@@ -47,7 +47,7 @@ export default function Gallery() {
           role="dialog"
           aria-modal="true"
         >
-          <img src={PHOTOS[openIdx]} alt={`커플 사진 ${openIdx + 1}`} />
+          <img src={PHOTOS[openIdx]} alt="" />
           <button
             type="button"
             className="gallery__nav gallery__nav--prev"

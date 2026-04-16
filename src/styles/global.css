@@ -37,6 +37,7 @@ button {
   background: var(--bg);
   min-height: 100vh;
   overflow: hidden;
+  border-radius: 24px;
 }
 
 .section {
@@ -45,58 +46,71 @@ button {
   text-align: center;
 }
 
+.section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
 .section__title {
   font-size: 14px;
   letter-spacing: 0.2em;
   color: var(--point);
-  margin: 0 0 8px;
   font-weight: 500;
 }
 
 .section__subtitle {
   font-size: 14px;
   color: var(--muted);
-  margin: 0 0 32px;
 }
 
 /* Cover */
 .cover {
-  padding: 48px 0 56px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
-.cover__tag,
-.cover__names,
-.cover__date {
-  padding: 0 24px;
-}
-.cover__tag {
-  font-size: 12px;
-  letter-spacing: 0.3em;
-  color: var(--muted);
-  margin: 0 0 24px;
+.cover__photo-area {
+  position: relative;
+  width: 100%;
 }
 .cover__photo {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  margin: 0 0 32px;
   display: block;
 }
+.cover__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 24px 48px;
+  text-align: center;
+  background: var(--bg);
+}
+.cover__tag {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--point);
+  font-weight: 500;
+}
 .cover__names {
-  font-size: 28px;
-  font-weight: 400;
-  margin: 0 0 12px;
-  letter-spacing: 0.05em;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
 }
 .cover__and {
   color: #d97a7a;
-  margin: 0 10px;
-  font-size: 22px;
+  margin: 0 12px;
+  font-size: 24px;
   vertical-align: middle;
 }
 .cover__date {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--muted);
-  margin: 0;
+  letter-spacing: 0.05em;
 }
 
 /* Greeting */
@@ -113,6 +127,10 @@ button {
   gap: 16px;
 }
 .profile__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   background: var(--card);
   border-radius: var(--radius);
   padding: 20px 12px;
@@ -124,16 +142,18 @@ button {
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  margin: 0 auto 16px;
+}
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .profile__parents {
   font-size: 13px;
   color: var(--muted);
-  margin: 0 0 8px;
 }
 .profile__name {
   font-size: 18px;
-  margin: 0;
 }
 .profile__role {
   display: inline-block;
@@ -143,11 +163,15 @@ button {
 }
 
 /* Calendar */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 .calendar__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  margin-top: 24px;
 }
 .calendar__head {
   font-size: 12px;
@@ -166,6 +190,52 @@ button {
   background: var(--point);
   color: #fff;
   font-weight: 600;
+}
+.calendar__countdown {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+.calendar__countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 0;
+  width: 68px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.calendar__countdown-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+.calendar__countdown-value {
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--fg);
+  line-height: 1;
+}
+.calendar__message {
+  margin-top: 28px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.calendar__message strong {
+  color: var(--point);
+  font-weight: 600;
+}
+.calendar__heart {
+  color: #d97a7a;
+  font-size: 12px;
 }
 
 /* Gallery */
@@ -235,22 +305,26 @@ button {
 }
 
 /* Location */
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .location__name {
   font-size: 18px;
-  margin: 0 0 4px;
 }
 .location__address,
 .location__tel {
   font-size: 14px;
   color: var(--muted);
-  margin: 0 0 4px;
 }
 .location__map {
   width: 100%;
   aspect-ratio: 16 / 10;
   background: #e8e4dc;
   border-radius: var(--radius);
-  margin: 24px 0 16px;
+  margin-top: 20px;
+  margin-bottom: 12px;
 }
 .location__actions,
 .share__actions {
@@ -274,8 +348,15 @@ button {
 }
 
 /* Account */
+.account {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .account__group {
-  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .account__toggle {
   width: 100%;
@@ -290,9 +371,11 @@ button {
   font-size: 15px;
 }
 .account__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   list-style: none;
   padding: 0;
-  margin: 8px 0 0;
 }
 .account__item {
   display: flex;
@@ -302,15 +385,18 @@ button {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  margin-bottom: 4px;
 }
 
 /* Guestbook */
+.guestbook {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 .guestbook__form {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 24px;
 }
 .guestbook__form input,
 .guestbook__form textarea {
@@ -331,33 +417,39 @@ button {
   font-size: 14px;
 }
 .guestbook__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   list-style: none;
   padding: 0;
-  margin: 0;
   text-align: left;
 }
 .guestbook__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding: 16px;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  margin-bottom: 8px;
 }
 .guestbook__name {
   font-size: 14px;
   font-weight: 600;
-  margin: 0 0 4px;
 }
 .guestbook__message {
   font-size: 14px;
   color: var(--muted);
-  margin: 0;
   white-space: pre-wrap;
 }
 
 /* Share */
+.share {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
 .share__footer {
-  margin-top: 48px;
   font-size: 12px;
   letter-spacing: 0.3em;
   color: var(--muted);

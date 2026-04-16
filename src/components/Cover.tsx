@@ -12,20 +12,24 @@ export default function Cover({ info }: Props) {
 
   return (
     <section className="section cover">
-      <p className="cover__tag">WE ARE GETTING MARRIED</p>
-      <img
-        className="cover__photo"
-        src={`${import.meta.env.BASE_URL}images/main.jpg`}
-        alt="박민혁 유연후 커플 사진"
-      />
-      <h1 className="cover__names">
-        {info.groom.name}
-        <span className="cover__and" aria-label="and">
-          ♥
-        </span>
-        {info.bride.name}
-      </h1>
-      <p className="cover__date">{dateText}</p>
+      <div className="cover__photo-area">
+        <img
+          className="cover__photo"
+          src={`${import.meta.env.BASE_URL}images/main.jpeg`}
+          alt=""
+        />
+      </div>
+      <div className="cover__info">
+        <p className="cover__tag">WE ARE GETTING MARRIED</p>
+        <h1 className="cover__names">
+          {info.groom.name}
+          <span className="cover__and" aria-label="and">
+            ♥
+          </span>
+          {info.bride.name}
+        </h1>
+        <p className="cover__date">{dateText}</p>
+      </div>
     </section>
   );
 }

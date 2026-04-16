@@ -5,9 +5,11 @@ type Props = {
     tel: string;
     mapUrl: string;
   };
+  isAfterWedding: boolean;
 };
 
-export default function Location({ venue }: Props) {
+export default function Location({ venue, isAfterWedding }: Props) {
+  if (isAfterWedding) return null;
   const copyAddress = async () => {
     try {
       await navigator.clipboard.writeText(venue.address);

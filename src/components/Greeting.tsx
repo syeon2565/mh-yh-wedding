@@ -1,4 +1,10 @@
-export default function Greeting() {
+type Props = {
+  isAfterWedding: boolean;
+};
+
+export default function Greeting({ isAfterWedding }: Props) {
+  if (isAfterWedding) return null;
+
   return (
     <section className="section greeting">
       <h2 className="section__title">INVITATION</h2>

@@ -19,7 +19,7 @@ function Card({ role, person }: { role: "신랑" | "신부"; person: Person }) {
       <img
         className="profile__photo"
         src={person.photo}
-        alt={`${role} ${person.name}`}
+        alt=""
         style={{ objectPosition: person.photoPosition ?? "center" }}
       />
       <p className="profile__parents">

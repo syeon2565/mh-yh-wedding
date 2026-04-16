@@ -33,17 +33,20 @@ const weddingInfo = {
 } as const;
 
 export default function App() {
+  const oneDayAfter = new Date(weddingInfo.date.getTime() + 24 * 60 * 60 * 1000);
+  const isAfterWedding = new Date() >= oneDayAfter;
+
   return (
     <main className="invitation">
       <Cover info={weddingInfo} />
-      <Greeting />
+      <Greeting isAfterWedding={isAfterWedding} />
       <Profile info={weddingInfo} />
-      <Calendar date={weddingInfo.date} />
+      <Calendar date={weddingInfo.date} groomName={weddingInfo.groom.name} brideName={weddingInfo.bride.name} />
       <Gallery />
-      <Location venue={weddingInfo.venue} />
-      <Account />
-      <Guestbook />
-      <Share />
+      <Location venue={weddingInfo.venue} isAfterWedding={isAfterWedding} />
+      <Account isAfterWedding={isAfterWedding} />
+      <Guestbook isAfterWedding={isAfterWedding} />
+      <Share isAfterWedding={isAfterWedding} />
     </main>
   );
 }

@@ -11,7 +11,12 @@ import { db } from "../firebase";
 
 type Entry = { id: string; name: string; message: string };
 
-export default function Guestbook() {
+type Props = {
+  isAfterWedding: boolean;
+};
+
+export default function Guestbook({ isAfterWedding }: Props) {
+  if (isAfterWedding) return null;
   const [entries, setEntries] = useState<Entry[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");

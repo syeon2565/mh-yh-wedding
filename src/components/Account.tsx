@@ -11,7 +11,12 @@ const ACCOUNTS = {
   ],
 };
 
-export default function Account() {
+type Props = {
+  isAfterWedding: boolean;
+};
+
+export default function Account({ isAfterWedding }: Props) {
+  if (isAfterWedding) return null;
   const [open, setOpen] = useState<"groom" | "bride" | null>(null);
 
   const toggle = (key: "groom" | "bride") =>
