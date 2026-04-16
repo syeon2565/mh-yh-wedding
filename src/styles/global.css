@@ -252,12 +252,14 @@ button {
   border-radius: var(--radius);
   margin: 24px 0 16px;
 }
-.location__actions {
+.location__actions,
+.share__actions {
   display: flex;
   gap: 8px;
   justify-content: center;
 }
-.location__actions .location__btn {
+.location__actions .location__btn,
+.share__actions button {
   flex: 1;
   max-width: 160px;
   padding: 12px;
@@ -351,4 +353,12 @@ button {
   color: var(--muted);
   margin: 0;
   white-space: pre-wrap;
+}
+
+/* Share */
+.share__footer {
+  margin-top: 48px;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
 }

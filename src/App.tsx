@@ -6,6 +6,7 @@ import Gallery from "./components/Gallery";
 import Location from "./components/Location";
 import Account from "./components/Account";
 import Guestbook from "./components/Guestbook";
+import Share from "./components/Share";
 
 const weddingInfo = {
   groom: {
@@ -42,6 +43,7 @@ export default function App() {
       <Location venue={weddingInfo.venue} />
       <Account />
       <Guestbook />
+      <Share />
     </main>
   );
 }
