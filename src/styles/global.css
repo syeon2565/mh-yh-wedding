@@ -105,3 +105,39 @@ button {
   color: var(--fg);
   margin: 0;
 }
+
+/* Profile */
+.profile__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.profile__card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px 12px;
+  border: 1px solid var(--line);
+}
+.profile__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 16px;
+}
+.profile__parents {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.profile__name {
+  font-size: 18px;
+  margin: 0;
+}
+.profile__role {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--point);
+  margin-right: 6px;
+}
