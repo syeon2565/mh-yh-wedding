@@ -1,21 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
-type Entry = { id: number; name: string; message: string };
+type Entry = { id: string; name: string; message: string };
 
 export default function Guestbook() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const q = query(collection(db, "guestbook"), orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        message: doc.data().message,
+      }));
+      setEntries(data);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !message.trim()) return;
-    setEntries((prev) => [
-      { id: Date.now(), name: name.trim(), message: message.trim() },
-      ...prev,
-    ]);
-    setName("");
-    setMessage("");
+    if (!name.trim() || !message.trim() || loading) return;
+
+    setLoading(true);
+    try {
+      await addDoc(collection(db, "guestbook"), {
+        name: name.trim(),
+        message: message.trim(),
+        createdAt: serverTimestamp(),
+      });
+      setName("");
+      setMessage("");
+    } catch (error) {
+      console.error("Failed to add message:", error);
+      alert("메시지 작성에 실패했습니다.");
+    }
+    setLoading(false);
   };
 
   return (
@@ -36,7 +68,9 @@ export default function Guestbook() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit">작성하기</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "작성 중..." : "작성하기"}
+        </button>
       </form>
 
       <ul className="guestbook__list">
