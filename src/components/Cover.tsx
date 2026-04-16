@@ -15,7 +15,7 @@ export default function Cover({ info }: Props) {
       <p className="cover__tag">WE ARE GETTING MARRIED</p>
       <img
         className="cover__photo"
-        src="/images/main.jpg"
+        src={`${import.meta.env.BASE_URL}images/main.jpg`}
         alt="박민혁 유연후 커플 사진"
       />
       <h1 className="cover__names">

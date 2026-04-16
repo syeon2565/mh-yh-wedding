@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const PHOTOS = Array.from(
   { length: 9 },
-  (_, i) => `/images/gallery-${String(i + 1).padStart(2, "0")}.jpg`
+  (_, i) => `${import.meta.env.BASE_URL}images/gallery-${String(i + 1).padStart(2, "0")}.jpg`
 );
 
 export default function Gallery() {
