@@ -84,33 +84,54 @@ button {
 .cover__info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 40px 24px 48px;
-  text-align: center;
+  align-items: flex-start;
+  gap: 0;
+  padding: 40px 32px 56px;
+  text-align: left;
   background: var(--bg);
 }
-.cover__tag {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  color: var(--point);
-  font-weight: 500;
-}
 .cover__names {
-  font-size: 32px;
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0 0 32px 0;
+  color: var(--fg);
+  letter-spacing: 0.05em;
 }
 .cover__and {
-  color: #d97a7a;
-  margin: 0 12px;
-  font-size: 24px;
-  vertical-align: middle;
+  color: var(--point);
+  font-weight: 400;
+  margin: 0 4px;
 }
-.cover__date {
+.cover__details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 32px;
+}
+.cover__details p {
+  margin: 0;
+}
+.cover__datetime {
   font-size: 15px;
   color: var(--muted);
-  letter-spacing: 0.05em;
+}
+.cover__venue {
+  font-size: 14px;
+  color: var(--muted);
+}
+.cover__divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0 0 24px 0;
+}
+.cover__tag {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  font-weight: 400;
+  margin: 0;
+  font-style: italic;
 }
 
 /* Greeting */
@@ -161,7 +182,6 @@ button {
   color: var(--point);
   margin-right: 6px;
 }
-
 /* Calendar */
 .calendar {
   display: flex;
@@ -236,6 +256,79 @@ button {
 .calendar__heart {
   color: #d97a7a;
   font-size: 12px;
+}
+
+/* Days Together */
+.days-together {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: #f5f3ef;
+}
+.days-together__subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+  margin: 0;
+}
+.days-together__title {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--fg);
+  margin: 0;
+}
+.days-together__timeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 24px 0;
+}
+.days-together__date {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.days-together__line {
+  flex: 1;
+  position: relative;
+  height: 2px;
+  background: #b5b5b5;
+  display: flex;
+  align-items: center;
+}
+.days-together__line::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  border: 5px solid transparent;
+  border-left: 6px solid #b5b5b5;
+}
+.days-together__dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #9a8a7a;
+  border-radius: 50%;
+}
+.days-together__dot--start {
+  left: 0;
+}
+.days-together__dot--end {
+  right: 40px;
+}
+.days-together__hearts {
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  letter-spacing: -2px;
+}
+.days-together__count {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--fg);
+  margin: 0;
 }
 
 /* Gallery */

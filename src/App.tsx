@@ -2,6 +2,7 @@ import Cover from "./components/Cover";
 import Greeting from "./components/Greeting";
 import Profile from "./components/Profile";
 import Calendar from "./components/Calendar";
+import DaysTogether from "./components/DaysTogether";
 import Gallery from "./components/Gallery";
 import Location from "./components/Location";
 import Account from "./components/Account";
@@ -23,6 +24,7 @@ const weddingInfo = {
     photo: `${import.meta.env.BASE_URL}images/bride.jpg`,
     photoPosition: "50% 0%",
   },
+  startDate: "2022-01-01",
   date: new Date("2026-06-27T11:00:00+09:00"),
   venue: {
     name: "목포 예술웨딩컨벤션",
@@ -42,6 +44,7 @@ export default function App() {
       <Greeting isAfterWedding={isAfterWedding} />
       <Profile info={weddingInfo} />
       <Calendar date={weddingInfo.date} groomName={weddingInfo.groom.name} brideName={weddingInfo.bride.name} />
+      <DaysTogether startDate={weddingInfo.startDate} />
       <Gallery />
       <Location venue={weddingInfo.venue} isAfterWedding={isAfterWedding} />
       <Account isAfterWedding={isAfterWedding} />

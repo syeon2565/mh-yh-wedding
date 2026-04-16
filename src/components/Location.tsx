@@ -33,6 +33,7 @@ export default function Location({ venue, isAfterWedding }: Props) {
           src="https://map.kakao.com/link/map/목포 예술웨딩컨벤션,34.7856,126.3880"
           title="카카오맵"
           allowFullScreen
+          loading="lazy"
         />
       </div>
 
