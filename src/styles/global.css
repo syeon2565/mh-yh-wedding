@@ -302,3 +302,53 @@ button {
   border-radius: var(--radius);
   margin-bottom: 4px;
 }
+
+/* Guestbook */
+.guestbook__form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.guestbook__form input,
+.guestbook__form textarea {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 14px;
+  background: var(--card);
+  resize: none;
+}
+.guestbook__form button {
+  padding: 12px;
+  background: var(--point);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+.guestbook__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.guestbook__item {
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+}
+.guestbook__name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.guestbook__message {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+  white-space: pre-wrap;
+}

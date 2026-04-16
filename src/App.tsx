@@ -5,6 +5,7 @@ import Calendar from "./components/Calendar";
 import Gallery from "./components/Gallery";
 import Location from "./components/Location";
 import Account from "./components/Account";
+import Guestbook from "./components/Guestbook";
 
 const weddingInfo = {
   groom: {
@@ -40,6 +41,7 @@ export default function App() {
       <Gallery />
       <Location venue={weddingInfo.venue} />
       <Account />
+      <Guestbook />
     </main>
   );
 }
