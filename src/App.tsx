@@ -4,6 +4,7 @@ import Profile from "./components/Profile";
 import Calendar from "./components/Calendar";
 import Gallery from "./components/Gallery";
 import Location from "./components/Location";
+import Account from "./components/Account";
 
 const weddingInfo = {
   groom: {
@@ -38,6 +39,7 @@ export default function App() {
       <Calendar date={weddingInfo.date} />
       <Gallery />
       <Location venue={weddingInfo.venue} />
+      <Account />
     </main>
   );
 }
