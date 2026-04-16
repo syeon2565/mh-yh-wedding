@@ -1,6 +1,7 @@
 import Cover from "./components/Cover";
 import Greeting from "./components/Greeting";
 import Profile from "./components/Profile";
+import Calendar from "./components/Calendar";
 
 const weddingInfo = {
   groom: {
@@ -26,6 +27,7 @@ export default function App() {
       <Cover info={weddingInfo} />
       <Greeting />
       <Profile info={weddingInfo} />
+      <Calendar date={weddingInfo.date} />
     </main>
   );
 }

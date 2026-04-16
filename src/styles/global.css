@@ -141,3 +141,29 @@ button {
   color: var(--point);
   margin-right: 6px;
 }
+
+/* Calendar */
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 24px;
+}
+.calendar__head {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 8px 0;
+}
+.calendar__cell {
+  font-size: 14px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.calendar__cell.is-target {
+  background: var(--point);
+  color: #fff;
+  font-weight: 600;
+}
