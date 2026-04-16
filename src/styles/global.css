@@ -233,3 +233,40 @@ button {
   font-size: 13px;
   opacity: 0.8;
 }
+
+/* Location */
+.location__name {
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.location__address,
+.location__tel {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+.location__map {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #e8e4dc;
+  border-radius: var(--radius);
+  margin: 24px 0 16px;
+}
+.location__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.location__actions .location__btn {
+  flex: 1;
+  max-width: 160px;
+  padding: 12px;
+  background: var(--card);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
