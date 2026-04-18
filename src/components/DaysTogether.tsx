@@ -32,19 +32,25 @@ export default function DaysTogether({ startDate }: Props) {
       <p className="days-together__subtitle">D+Day</p>
       <h2 className="days-together__title">우리가 함께한 지</h2>
 
-      <div className="days-together__timeline">
-        <span className="days-together__date">{formatDate(start)}</span>
-        <div className="days-together__line">
-          <span className="days-together__dot days-together__dot--start" />
-          <span className="days-together__dot days-together__dot--end" />
-          <span className="days-together__hearts">💙🩷</span>
-        </div>
-        <span className="days-together__date">오늘</span>
-      </div>
-
       <p className="days-together__count">
         {days.toLocaleString()}일 {hours}시간 {minutes}분 {seconds}초
       </p>
+
+      <div className="days-together__timeline">
+        <div className="days-together__endpoint">
+          <span className="days-together__ep-dot" />
+          <span className="days-together__ep-label">시작</span>
+          <span className="days-together__ep-date">{formatDate(start)}</span>
+        </div>
+        <div className="days-together__line">
+          <span className="days-together__hearts">💙🩷</span>
+        </div>
+        <div className="days-together__endpoint">
+          <span className="days-together__ep-dot days-together__ep-dot--today" />
+          <span className="days-together__ep-label">오늘</span>
+          <span className="days-together__ep-date">{formatDate(now)}</span>
+        </div>
+      </div>
     </section>
   );
 }

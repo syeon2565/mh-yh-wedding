@@ -36,9 +36,6 @@ export default function Account({ isAfterWedding }: Props) {
   return (
     <section className="section account">
       <h2 className="section__title">마음 전하실 곳</h2>
-      <p className="section__subtitle">
-        참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.
-      </p>
 
       {(["groom", "bride"] as const).map((key) => (
         <div key={key} className="account__group">
