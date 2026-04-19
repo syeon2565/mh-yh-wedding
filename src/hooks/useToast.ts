@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useToast() {
+export const useToast = () => {
   const [toast, setToast] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -9,4 +9,4 @@ export function useToast() {
   };
 
   return { toast, showToast };
-}
+};

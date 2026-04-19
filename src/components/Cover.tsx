@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import styled from "@emotion/styled";
+import { keyframes, css } from "@emotion/react";
+import { Section } from "../styles/shared";
+import { colors } from "../styles/theme";
 
 type Props = {
   info: {
@@ -21,7 +25,154 @@ const SLIDES = [
 
 const FADE_MS = 800;
 
-export default function Cover({ info }: Props) {
+const brightenIn = keyframes`
+  from { filter: brightness(0.4); }
+  to   { filter: brightness(1); }
+`;
+
+const dimOut = keyframes`
+  from { opacity: 1; filter: brightness(1); }
+  to   { opacity: 0; filter: brightness(0.4); }
+`;
+
+const CoverSection = styled(Section)`
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Slideshow = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+`;
+
+const Slide = styled('img', {
+  shouldForwardProp: (prop) => prop !== '$active' && prop !== '$out',
+})<{ $active: boolean; $out: boolean }>`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: ${({ $active, $out }) => ($active || $out ? 1 : 0)};
+  z-index: ${({ $active, $out }) => ($active ? 1 : $out ? 2 : 0)};
+  animation: ${({ $active, $out }) =>
+    $active
+      ? css`${brightenIn} 0.8s ease-in-out forwards`
+      : $out
+        ? css`${dimOut} 0.8s ease-in-out forwards`
+        : 'none'};
+`;
+
+const Arrow = styled('button', {
+  shouldForwardProp: (prop) => prop !== '$direction',
+})<{ $direction: 'prev' | 'next' }>`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ${({ $direction }) => ($direction === 'prev' ? 'left: 12px;' : 'right: 12px;')}
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  padding: 0;
+  color: #fff;
+  font-size: 28px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+`;
+
+const Dots = styled.div`
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+`;
+
+const Dot = styled('button', {
+  shouldForwardProp: (prop) => prop !== '$active',
+})<{ $active: boolean }>`
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: ${({ $active }) => ($active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s;
+`;
+
+const InfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px 32px 56px;
+  text-align: left;
+  background: ${colors.bg};
+`;
+
+const Names = styled.p`
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+  color: ${colors.fg};
+  letter-spacing: 0.05em;
+`;
+
+const AndSymbol = styled.span`
+  color: ${colors.point};
+  font-weight: 400;
+  margin: 0 4px;
+`;
+
+const Tag = styled.p`
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: ${colors.muted};
+  font-weight: 400;
+  margin: 0;
+  font-style: italic;
+`;
+
+const Divider = styled.hr`
+  width: 100%;
+  border: none;
+  border-top: 1px solid ${colors.line};
+  margin: 0;
+`;
+
+const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const DateTime = styled.p`
+  margin: 0;
+  font-size: 15px;
+  color: ${colors.muted};
+`;
+
+const Venue = styled.p`
+  margin: 0;
+  font-size: 14px;
+  color: ${colors.muted};
+`;
+
+const Cover = ({ info }: Props) => {
   const [cur, setCur] = useState(0);
   const [outgoing, setOutgoing] = useState<number | null>(null);
   const prevCurRef = useRef(0);
@@ -59,56 +210,50 @@ export default function Cover({ info }: Props) {
       : `${ampm} ${displayHour}시`;
 
   return (
-    <section className="section cover">
-      <div className="cover__slideshow">
-        {SLIDES.map((src, i) => {
-          let cls = "cover__slide";
-          if (i === cur) cls += " cover__slide--active";
-          else if (i === outgoing) cls += " cover__slide--out";
-          return <img key={src} className={cls} src={src} alt="" />;
-        })}
-        <button
-          type="button"
-          className="cover__arrow cover__arrow--prev"
-          onClick={goPrev}
-          aria-label="이전"
-        >
+    <CoverSection>
+      <Slideshow>
+        {SLIDES.map((src, i) => (
+          <Slide
+            key={src}
+            src={src}
+            alt=""
+            $active={i === cur}
+            $out={i === outgoing}
+          />
+        ))}
+        <Arrow type="button" $direction="prev" onClick={goPrev} aria-label="이전">
           &#10094;
-        </button>
-        <button
-          type="button"
-          className="cover__arrow cover__arrow--next"
-          onClick={goNext}
-          aria-label="다음"
-        >
+        </Arrow>
+        <Arrow type="button" $direction="next" onClick={goNext} aria-label="다음">
           &#10095;
-        </button>
-        <div className="cover__dots">
+        </Arrow>
+        <Dots>
           {SLIDES.map((_, i) => (
-            <button
+            <Dot
               key={i}
               type="button"
-              className={`cover__dot${i === cur ? " cover__dot--active" : ""}`}
+              $active={i === cur}
               onClick={() => setCur(i)}
               aria-label={`사진 ${i + 1}`}
             />
           ))}
-        </div>
-      </div>
-      <div className="cover__info">
-        <p className="cover__names">
-          {info.groom.name} <span className="cover__and">&amp;</span>{" "}
-          {info.bride.name}
-        </p>
-        <p className="cover__tag">We are getting married</p>
-        <hr className="cover__divider" />
-        <div className="cover__details">
-          <p className="cover__datetime">
+        </Dots>
+      </Slideshow>
+      <InfoBlock>
+        <Names>
+          {info.groom.name} <AndSymbol>&amp;</AndSymbol> {info.bride.name}
+        </Names>
+        <Tag>We are getting married</Tag>
+        <Divider />
+        <Details>
+          <DateTime>
             {d.getMonth() + 1}월 {d.getDate()}일 {weekday}요일 {timeText}
-          </p>
-          <p className="cover__venue">{info.venue.name}</p>
-        </div>
-      </div>
-    </section>
+          </DateTime>
+          <Venue>{info.venue.name}</Venue>
+        </Details>
+      </InfoBlock>
+    </CoverSection>
   );
-}
+};
+
+export default Cover;

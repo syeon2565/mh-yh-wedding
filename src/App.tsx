@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import Cover from "./components/Cover";
 import Greeting from "./components/Greeting";
 import Profile from "./components/Profile";
@@ -7,47 +8,35 @@ import Location from "./components/Location";
 import Account from "./components/Account";
 import Guestbook from "./components/Guestbook";
 import Share from "./components/Share";
+import { weddingInfo } from "./data/weddingInfo";
+import { colors, maxWidth } from "./styles/theme";
 
-const weddingInfo = {
-  groom: {
-    name: "박민혁",
-    father: "박성록",
-    mother: "정경란",
-    photo: `${import.meta.env.BASE_URL}images/groom.jpg`,
-    photoPosition: "50% 0%",
-  },
-  bride: {
-    name: "유연후",
-    father: "유동용",
-    mother: "박미선",
-    photo: `${import.meta.env.BASE_URL}images/bride.jpg`,
-    photoPosition: "50% 0%",
-  },
-  startDate: "2021-10-17",
-  date: new Date("2026-06-27T11:00:00+09:00"),
-  venue: {
-    name: "목포 예술웨딩컨벤션",
-    address: "전남 목포시 남농로 9",
-    tel: "061-276-0050",
-    mapUrl: "https://naver.me/IIt6xUQm",
-  },
-} as const;
+const Invitation = styled.main`
+  max-width: ${maxWidth};
+  margin: 0 auto;
+  background: ${colors.bg};
+  min-height: 100vh;
+  overflow: hidden;
+  border-radius: 24px;
+`;
 
-export default function App() {
+const App = () => {
   const oneDayAfter = new Date(weddingInfo.date.getTime() + 24 * 60 * 60 * 1000);
   const isAfterWedding = new Date() >= oneDayAfter;
 
   return (
-    <main className="invitation">
+    <Invitation>
       <Cover info={weddingInfo} />
       <Greeting isAfterWedding={isAfterWedding} />
       <Profile info={weddingInfo} />
       <Calendar date={weddingInfo.date} groomName={weddingInfo.groom.name} brideName={weddingInfo.bride.name} />
       <Gallery />
       <Location venue={weddingInfo.venue} isAfterWedding={isAfterWedding} />
-      <Account isAfterWedding={isAfterWedding} />
+      <Account isAfterWedding={isAfterWedding} groom={weddingInfo.groom} bride={weddingInfo.bride} />
       <Guestbook isAfterWedding={isAfterWedding} />
       <Share isAfterWedding={isAfterWedding} />
-    </main>
+    </Invitation>
   );
-}
+};
+
+export default App;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "@emotion/styled";
 import { useToast } from "../hooks/useToast";
 import Toast from "./Toast";
 import {
@@ -10,6 +11,8 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { Section, SectionTitle, SectionSubtitle } from "../styles/shared";
+import { colors, radius } from "../styles/theme";
 
 type Entry = { id: string; name: string; message: string };
 
@@ -17,7 +20,78 @@ type Props = {
   isAfterWedding: boolean;
 };
 
-export default function Guestbook({ isAfterWedding }: Props) {
+const GuestbookSection = styled(Section)`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const inputStyles = `
+  padding: 12px;
+  border: 1px solid ${colors.line};
+  border-radius: ${radius};
+  font-family: inherit;
+  font-size: 14px;
+  background: ${colors.card};
+  resize: none;
+`;
+
+const Input = styled.input`
+  ${inputStyles}
+`;
+
+const Textarea = styled.textarea`
+  ${inputStyles}
+`;
+
+const SubmitBtn = styled.button`
+  padding: 12px;
+  background: ${colors.point};
+  color: #fff;
+  border: 0;
+  border-radius: ${radius};
+  font-size: 14px;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  text-align: left;
+`;
+
+const Item = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  background: ${colors.card};
+  border: 1px solid ${colors.line};
+  border-radius: ${radius};
+`;
+
+const EntryName = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+`;
+
+const EntryMessage = styled.p`
+  font-size: 14px;
+  color: ${colors.muted};
+  white-space: pre-wrap;
+  margin: 0;
+`;
+
+const Guestbook = ({ isAfterWedding }: Props) => {
   if (isAfterWedding) return null;
   const [entries, setEntries] = useState<Entry[]>([]);
   const [name, setName] = useState("");
@@ -59,37 +133,39 @@ export default function Guestbook({ isAfterWedding }: Props) {
   };
 
   return (
-    <section className="section guestbook">
-      <h2 className="section__title">GUESTBOOK</h2>
-      <p className="section__subtitle">축하 메시지를 남겨주세요</p>
+    <GuestbookSection>
+      <SectionTitle>GUESTBOOK</SectionTitle>
+      <SectionSubtitle>축하 메시지를 남겨주세요</SectionSubtitle>
 
-      <form className="guestbook__form" onSubmit={submit}>
-        <input
+      <Form onSubmit={submit}>
+        <Input
           type="text"
           placeholder="이름"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <textarea
+        <Textarea
           placeholder="메시지"
           rows={3}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit" disabled={loading}>
+        <SubmitBtn type="submit" disabled={loading}>
           {loading ? "작성 중..." : "작성하기"}
-        </button>
-      </form>
+        </SubmitBtn>
+      </Form>
 
-      <ul className="guestbook__list">
+      <List>
         {entries.map((e) => (
-          <li key={e.id} className="guestbook__item">
-            <p className="guestbook__name">{e.name}</p>
-            <p className="guestbook__message">{e.message}</p>
-          </li>
+          <Item key={e.id}>
+            <EntryName>{e.name}</EntryName>
+            <EntryMessage>{e.message}</EntryMessage>
+          </Item>
         ))}
-      </ul>
+      </List>
       <Toast message={toast} />
-    </section>
+    </GuestbookSection>
   );
-}
+};
+
+export default Guestbook;

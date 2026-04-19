@@ -1,25 +1,122 @@
 import { useState } from "react";
+import styled from "@emotion/styled";
 import { useToast } from "../hooks/useToast";
 import Toast from "./Toast";
+import { Section, SectionTitle } from "../styles/shared";
+import { colors, radius } from "../styles/theme";
 
-const ACCOUNTS = {
-  groom: [
-    { role: "신랑", name: "박민혁", bank: "국민은행", number: "123-4567-8901" },
-    { role: "아버지", name: "박성록", bank: "신한은행", number: "110-259923993" },
-    { role: "어머니", name: "정경란", bank: "농협은행", number: "312-92591687-91" },
-  ],
-  bride: [
-    { role: "신부", name: "유연후", bank: "카카오뱅크", number: "3333-13-8609330" },
-    { role: "아버지", name: "유동용", bank: "하나은행", number: "196-890054-23907" },
-    { role: "어머니", name: "박미선", bank: "농협은행", number: "356-1613-3815-13" },
-  ],
+type PersonAccounts = {
+  name: string;
+  father: string;
+  mother: string;
+  accounts: ReadonlyArray<{ role: string; bank: string; number: string }>;
 };
 
 type Props = {
   isAfterWedding: boolean;
+  groom: PersonAccounts;
+  bride: PersonAccounts;
 };
 
-export default function Account({ isAfterWedding }: Props) {
+const getName = (person: PersonAccounts, role: string) => {
+  if (role === "아버지") return person.father;
+  if (role === "어머니") return person.mother;
+  return person.name;
+};
+
+const AccountSection = styled(Section)`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const Group = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+`;
+
+const Toggle = styled('button', {
+  shouldForwardProp: (prop) => prop !== '$open',
+})<{ $open: boolean }>`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: ${colors.card};
+  color: ${colors.fg};
+  border: 1px solid ${colors.line};
+  border-radius: ${({ $open }) => ($open ? `${radius} ${radius} 0 0` : radius)};
+  border-bottom-color: ${({ $open }) => ($open ? 'transparent' : colors.line)};
+  font-size: 15px;
+`;
+
+const Panel = styled.div`
+  background: ${colors.card};
+  border: 1px solid ${colors.line};
+  border-top: none;
+  border-radius: 0 0 ${radius} ${radius};
+  overflow: hidden;
+`;
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+`;
+
+const Info = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const RoleLabel = styled.span`
+  font-size: 12px;
+  color: ${colors.point};
+  font-weight: 500;
+`;
+
+const PersonName = styled.span`
+  font-size: 14px;
+  color: ${colors.fg};
+`;
+
+const AccountDetails = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const AccountNumber = styled.span`
+  font-size: 13px;
+  color: ${colors.muted};
+`;
+
+const CopyBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  color: ${colors.muted};
+  cursor: pointer;
+
+  &:hover {
+    color: ${colors.point};
+  }
+`;
+
+const Divider = styled.hr`
+  margin: 0;
+  border: none;
+  border-top: 1px solid ${colors.line};
+`;
+
+const Account = ({ isAfterWedding, groom, bride }: Props) => {
   if (isAfterWedding) return null;
   const [open, setOpen] = useState<"groom" | "bride" | null>(null);
   const { toast, showToast } = useToast();
@@ -36,36 +133,40 @@ export default function Account({ isAfterWedding }: Props) {
     }
   };
 
-  return (
-    <section className="section account">
-      <h2 className="section__title">마음 전하실 곳</h2>
+  const groups = [
+    { key: "groom" as const, label: "신랑측 계좌번호", person: groom },
+    { key: "bride" as const, label: "신부측 계좌번호", person: bride },
+  ];
 
-      {(["groom", "bride"] as const).map((key) => (
-        <div key={key} className="account__group">
-          <button
+  return (
+    <AccountSection>
+      <SectionTitle>마음 전하실 곳</SectionTitle>
+
+      {groups.map(({ key, label, person }) => (
+        <Group key={key}>
+          <Toggle
             type="button"
-            className={`account__toggle${open === key ? " account__toggle--open" : ""}`}
+            $open={open === key}
             onClick={() => toggle(key)}
             aria-expanded={open === key}
           >
-            {key === "groom" ? "신랑측 계좌번호" : "신부측 계좌번호"}
+            {label}
             <span>{open === key ? "−" : "+"}</span>
-          </button>
+          </Toggle>
           {open === key && (
-            <div className="account__panel">
-              {ACCOUNTS[key].map((a, idx) => (
+            <Panel>
+              {person.accounts.map((a, idx) => (
                 <div key={a.number}>
-                  {idx > 0 && <hr className="account__divider" />}
-                  <div className="account__row">
-                    <div className="account__info">
-                      <span className="account__role">{a.role}</span>
-                      <span className="account__name">{a.name}</span>
-                    </div>
-                    <div className="account__account">
-                      <span className="account__number">{a.bank} {a.number}</span>
-                      <button
+                  {idx > 0 && <Divider />}
+                  <Row>
+                    <Info>
+                      <RoleLabel>{a.role}</RoleLabel>
+                      <PersonName>{getName(person, a.role)}</PersonName>
+                    </Info>
+                    <AccountDetails>
+                      <AccountNumber>{a.bank} {a.number}</AccountNumber>
+                      <CopyBtn
                         type="button"
-                        className="account__copy"
                         onClick={() => copyAccount(a.bank, a.number)}
                         aria-label="계좌번호 복사"
                       >
@@ -73,16 +174,18 @@ export default function Account({ isAfterWedding }: Props) {
                           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
                           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
                         </svg>
-                      </button>
-                    </div>
-                  </div>
+                      </CopyBtn>
+                    </AccountDetails>
+                  </Row>
                 </div>
               ))}
-            </div>
+            </Panel>
           )}
-        </div>
+        </Group>
       ))}
       <Toast message={toast} />
-    </section>
+    </AccountSection>
   );
-}
+};
+
+export default Account;
