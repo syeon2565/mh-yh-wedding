@@ -24,9 +24,8 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: echo "${{ secrets.ENV }}" > .env
       - run: npm run build
-        env:
-          VITE_KAKAO_JS_KEY: ${{ secrets.ENV }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
