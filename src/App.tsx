@@ -11,8 +11,8 @@ import Share from "./components/Share";
 const weddingInfo = {
   groom: {
     name: "박민혁",
-    father: "박아버지",
-    mother: "○어머니",
+    father: "박성록",
+    mother: "정경란",
     photo: `${import.meta.env.BASE_URL}images/groom.jpg`,
     photoPosition: "50% 0%",
   },

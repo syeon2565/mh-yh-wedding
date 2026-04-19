@@ -5,8 +5,8 @@ import Toast from "./Toast";
 const ACCOUNTS = {
   groom: [
     { role: "신랑", name: "박민혁", bank: "국민은행", number: "123-4567-8901" },
-    { role: "아버지", name: "박성록", bank: "신한은행", number: "110-111-222" },
-    { role: "어머니", name: "정경란", bank: "농협은행", number: "1002-123-456" },
+    { role: "아버지", name: "박성록", bank: "신한은행", number: "110-259923993" },
+    { role: "어머니", name: "정경란", bank: "농협은행", number: "312-92591687-91" },
   ],
   bride: [
     { role: "신부", name: "유연후", bank: "카카오뱅크", number: "3333-13-8609330" },
