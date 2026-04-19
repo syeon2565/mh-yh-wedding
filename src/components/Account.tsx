@@ -62,32 +62,31 @@ const Panel = styled.div`
 
 const Row = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding: 16px 20px;
-`;
-
-const Info = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
 `;
 
 const RoleLabel = styled.span`
   font-size: 12px;
   color: ${colors.point};
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+`;
+
+const NameAndAccount = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2px;
+  flex: 1;
 `;
 
 const PersonName = styled.span`
   font-size: 14px;
   color: ${colors.fg};
-`;
-
-const AccountDetails = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
 `;
 
 const AccountNumber = styled.span`
@@ -159,23 +158,21 @@ const Account = ({ isAfterWedding, groom, bride }: Props) => {
                 <div key={a.number}>
                   {idx > 0 && <Divider />}
                   <Row>
-                    <Info>
-                      <RoleLabel>{a.role}</RoleLabel>
+                    <RoleLabel>{a.role}</RoleLabel>
+                    <NameAndAccount>
                       <PersonName>{getName(person, a.role)}</PersonName>
-                    </Info>
-                    <AccountDetails>
                       <AccountNumber>{a.bank} {a.number}</AccountNumber>
-                      <CopyBtn
-                        type="button"
-                        onClick={() => copyAccount(a.bank, a.number)}
-                        aria-label="계좌번호 복사"
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                      </CopyBtn>
-                    </AccountDetails>
+                    </NameAndAccount>
+                    <CopyBtn
+                      type="button"
+                      onClick={() => copyAccount(a.bank, a.number)}
+                      aria-label="계좌번호 복사"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                      </svg>
+                    </CopyBtn>
                   </Row>
                 </div>
               ))}

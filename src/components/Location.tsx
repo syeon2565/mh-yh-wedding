@@ -159,6 +159,9 @@ const BusNum = styled.span`
   padding: 1px 6px;
   border-radius: 4px;
   flex-shrink: 0;
+  min-width: 44px;
+  text-align: center;
+  display: inline-block;
 `;
 
 const LAT = 34.7956;
@@ -247,20 +250,6 @@ const Location = ({ venue, isAfterWedding }: Props) => {
             <TransportTitle>버스</TransportTitle>
             <BusList>
               <BusRow>
-                <BusNum>300A / 66</BusNum>
-                <BusRoute>
-                  <TransportDesc>KT목포빌딩 승차</TransportDesc>
-                  <TransportDesc>용해동아아파트후문 하차</TransportDesc>
-                </BusRoute>
-              </BusRow>
-              <BusRow>
-                <BusNum>500 / 210</BusNum>
-                <BusRoute>
-                  <TransportDesc>목포역 승차</TransportDesc>
-                  <TransportDesc>용해동아아파트후문 하차</TransportDesc>
-                </BusRoute>
-              </BusRow>
-              <BusRow>
                 <BusNum>66-1</BusNum>
                 <BusRoute>
                   <TransportDesc>목포버스터미널 승차</TransportDesc>
@@ -272,6 +261,26 @@ const Location = ({ venue, isAfterWedding }: Props) => {
                 <BusRoute>
                   <TransportDesc>목포버스터미널 승차</TransportDesc>
                   <TransportDesc>제일중학교건너 하차</TransportDesc>
+                </BusRoute>
+              </BusRow>
+              <BusRow>
+                <div style={{ display: "flex", gap: "4px" }}>
+                  <BusNum>300A</BusNum>
+                  <BusNum>66</BusNum>
+                </div>
+                <BusRoute>
+                  <TransportDesc>KT목포빌딩 승차</TransportDesc>
+                  <TransportDesc>용해동아아파트후문 하차</TransportDesc>
+                </BusRoute>
+              </BusRow>
+              <BusRow>
+                <div style={{ display: "flex", gap: "4px" }}>
+                  <BusNum>500</BusNum>
+                  <BusNum>210</BusNum>
+                </div>
+                <BusRoute>
+                  <TransportDesc>목포역 승차</TransportDesc>
+                  <TransportDesc>용해동아아파트후문 하차</TransportDesc>
                 </BusRoute>
               </BusRow>
             </BusList>
