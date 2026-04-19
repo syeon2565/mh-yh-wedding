@@ -48,8 +48,6 @@ export default function Cover({ info }: Props) {
   const goNext = () => setCur((c) => (c + 1) % SLIDES.length);
 
   const d = info.date;
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
   const weekday = WEEKDAYS[d.getDay()];
   const hour = d.getHours();
   const minute = d.getMinutes();
