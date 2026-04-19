@@ -20,7 +20,7 @@ export const weddingInfo = {
     accounts: [
       { role: "신부", bank: "카카오뱅크", number: "3333-13-8609330" },
       { role: "아버지", bank: "하나은행", number: "196-890054-23907" },
-      { role: "어머니", bank: "농협은행", number: "356-1613-3815-13" },
+      { role: "어머니", bank: "농협은행", number: "356-0963-9918-93" },
     ],
   },
   startDate: "2021-10-17",
