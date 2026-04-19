@@ -217,7 +217,7 @@ const Location = ({ venue, isAfterWedding }: Props) => {
         <Btn href={venue.mapUrl} target="_blank" rel="noreferrer">
           네이버 지도
         </Btn>
-        <Btn href="https://map.kakao.com/link/map/1543030498" target="_blank" rel="noreferrer">
+        <Btn href="https://kko.to/T0RQ24pchL" target="_blank" rel="noreferrer">
           카카오맵
         </Btn>
         <BtnButton type="button" onClick={copyAddress}>
