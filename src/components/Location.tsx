@@ -1,3 +1,6 @@
+import { useToast } from "../hooks/useToast";
+import Toast from "./Toast";
+
 type Props = {
   venue: {
     name: string;
@@ -12,12 +15,14 @@ type Props = {
 export default function Location({ venue, isAfterWedding }: Props) {
   if (isAfterWedding) return null;
 
+  const { toast, showToast } = useToast();
+
   const copyAddress = async () => {
     try {
       await navigator.clipboard.writeText(venue.address);
-      alert("주소가 복사되었습니다.");
+      showToast("주소가 복사되었습니다");
     } catch {
-      alert("복사에 실패했습니다.");
+      showToast("복사에 실패했습니다");
     }
   };
 
@@ -90,6 +95,7 @@ export default function Location({ venue, isAfterWedding }: Props) {
           </div>
         </div>
       </div>
+      <Toast message={toast} />
     </section>
   );
 }

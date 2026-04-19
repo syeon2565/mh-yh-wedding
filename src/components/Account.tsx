@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { useToast } from "../hooks/useToast";
+import Toast from "./Toast";
 
 const ACCOUNTS = {
   groom: [
     { role: "신랑", name: "박민혁", bank: "국민은행", number: "123-4567-8901" },
-    { role: "아버지", name: "박아버지", bank: "신한은행", number: "110-111-222" },
-    { role: "어머니", name: "○어머니", bank: "우리은행", number: "1002-123-456" },
+    { role: "아버지", name: "박성록", bank: "신한은행", number: "110-111-222" },
+    { role: "어머니", name: "정경란", bank: "농협은행", number: "1002-123-456" },
   ],
   bride: [
-    { role: "신부", name: "유연후", bank: "카카오뱅크", number: "3333-01-1234567" },
-    { role: "아버지", name: "유동용", bank: "하나은행", number: "123-456-78901" },
-    { role: "어머니", name: "박미선", bank: "농협은행", number: "301-1234-5678" },
+    { role: "신부", name: "유연후", bank: "카카오뱅크", number: "3333-13-8609330" },
+    { role: "아버지", name: "유동용", bank: "하나은행", number: "196-890054-23907" },
+    { role: "어머니", name: "박미선", bank: "농협은행", number: "356-1613-3815-13" },
   ],
 };
 
@@ -20,6 +22,7 @@ type Props = {
 export default function Account({ isAfterWedding }: Props) {
   if (isAfterWedding) return null;
   const [open, setOpen] = useState<"groom" | "bride" | null>(null);
+  const { toast, showToast } = useToast();
 
   const toggle = (key: "groom" | "bride") =>
     setOpen((prev) => (prev === key ? null : key));
@@ -27,9 +30,9 @@ export default function Account({ isAfterWedding }: Props) {
   const copyAccount = async (bank: string, number: string) => {
     try {
       await navigator.clipboard.writeText(`${bank} ${number}`);
-      alert("계좌번호가 복사되었습니다.");
+      showToast("계좌번호가 복사되었습니다");
     } catch {
-      alert("복사에 실패했습니다.");
+      showToast("복사에 실패했습니다");
     }
   };
 
@@ -79,6 +82,7 @@ export default function Account({ isAfterWedding }: Props) {
           )}
         </div>
       ))}
+      <Toast message={toast} />
     </section>
   );
 }

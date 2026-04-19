@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useToast } from "../hooks/useToast";
+import Toast from "./Toast";
 import {
   collection,
   addDoc,
@@ -21,6 +23,7 @@ export default function Guestbook({ isAfterWedding }: Props) {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const { toast, showToast } = useToast();
 
   useEffect(() => {
     const q = query(collection(db, "guestbook"), orderBy("createdAt", "desc"));
@@ -50,7 +53,7 @@ export default function Guestbook({ isAfterWedding }: Props) {
       setMessage("");
     } catch (error) {
       console.error("Failed to add message:", error);
-      alert("메시지 작성에 실패했습니다.");
+      showToast("메시지 작성에 실패했습니다");
     }
     setLoading(false);
   };
@@ -86,6 +89,7 @@ export default function Guestbook({ isAfterWedding }: Props) {
           </li>
         ))}
       </ul>
+      <Toast message={toast} />
     </section>
   );
 }

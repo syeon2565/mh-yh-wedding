@@ -1,3 +1,6 @@
+import { useToast } from "../hooks/useToast";
+import Toast from "./Toast";
+
 type Props = {
   isAfterWedding: boolean;
 };
@@ -5,14 +8,15 @@ type Props = {
 export default function Share({ isAfterWedding }: Props) {
   if (isAfterWedding) return null;
 
+  const { toast, showToast } = useToast();
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      alert("링크가 복사되었습니다.");
+      showToast("링크가 복사되었습니다");
     } catch {
-      alert("복사에 실패했습니다.");
+      showToast("복사에 실패했습니다");
     }
   };
 
@@ -28,6 +32,7 @@ export default function Share({ isAfterWedding }: Props) {
         </button>
       </div>
       <footer className="share__footer">Thank you</footer>
+      <Toast message={toast} />
     </section>
   );
 }
