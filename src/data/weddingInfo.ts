@@ -6,9 +6,9 @@ export const weddingInfo = {
     photo: `${import.meta.env.BASE_URL}images/groom.jpg`,
     photoPosition: "50% 0%",
     accounts: [
-      { role: "신랑", bank: "카카오뱅크", number: "3333-05-7932807" },
       { role: "아버지", bank: "신한은행", number: "110-259923993" },
       { role: "어머니", bank: "농협은행", number: "312-92591687-91" },
+      { role: "신랑", bank: "카카오뱅크", number: "3333-05-7932807" },
     ],
   },
   bride: {
@@ -18,9 +18,9 @@ export const weddingInfo = {
     photo: `${import.meta.env.BASE_URL}images/bride.jpg`,
     photoPosition: "50% 0%",
     accounts: [
-      { role: "신부", bank: "카카오뱅크", number: "3333-13-8609330" },
       { role: "아버지", bank: "하나은행", number: "196-890054-23907" },
       { role: "어머니", bank: "농협은행", number: "356-0963-9918-93" },
+      { role: "신부", bank: "카카오뱅크", number: "3333-13-8609330" },
     ],
   },
   startDate: "2021-10-17",

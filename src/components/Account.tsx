@@ -73,6 +73,8 @@ const RoleLabel = styled.span`
   font-weight: 500;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: 36px;
+  text-align: left;
 `;
 
 const NameAndAccount = styled.div`
