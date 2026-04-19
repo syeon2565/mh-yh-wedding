@@ -8,8 +8,8 @@ const ACCOUNTS = {
   ],
   bride: [
     { role: "신부", name: "유연후", bank: "카카오뱅크", number: "3333-01-1234567" },
-    { role: "아버지", name: "유아버지", bank: "하나은행", number: "123-456-78901" },
-    { role: "어머니", name: "○어머니", bank: "농협은행", number: "301-1234-5678" },
+    { role: "아버지", name: "유동용", bank: "하나은행", number: "123-456-78901" },
+    { role: "어머니", name: "박미선", bank: "농협은행", number: "301-1234-5678" },
   ],
 };
 
@@ -41,7 +41,7 @@ export default function Account({ isAfterWedding }: Props) {
         <div key={key} className="account__group">
           <button
             type="button"
-            className="account__toggle"
+            className={`account__toggle${open === key ? " account__toggle--open" : ""}`}
             onClick={() => toggle(key)}
             aria-expanded={open === key}
           >

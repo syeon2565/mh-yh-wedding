@@ -152,7 +152,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0;
+  gap: 20px;
   padding: 40px 32px 56px;
   text-align: left;
   background: var(--bg);
@@ -160,7 +160,7 @@ button {
 .cover__names {
   font-size: 28px;
   font-weight: 500;
-  margin: 0 0 32px 0;
+  margin: 0;
   color: var(--fg);
   letter-spacing: 0.05em;
 }
@@ -173,7 +173,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-bottom: 32px;
 }
 .cover__details p {
   margin: 0;
@@ -190,7 +189,7 @@ button {
   width: 100%;
   border: none;
   border-top: 1px solid var(--line);
-  margin: 0 0 24px 0;
+  margin: 0;
 }
 .cover__tag {
   font-size: 13px;
@@ -212,42 +211,55 @@ button {
 .profile__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 .profile__card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  background: var(--card);
+  gap: 10px;
+}
+.profile__photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
   border-radius: var(--radius);
-  padding: 20px 12px;
-  border: 1px solid var(--line);
+  overflow: hidden;
 }
 .profile__photo {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
-.profile__info {
+.profile__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 12px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 2px;
 }
-.profile__parents {
-  font-size: 13px;
-  color: var(--muted);
+.profile__role {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.08em;
 }
 .profile__name {
   font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.04em;
 }
-.profile__role {
-  display: inline-block;
+.profile__parents {
   font-size: 12px;
-  color: var(--point);
-  margin-right: 6px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
 }
 /* Calendar */
 .calendar {
@@ -442,14 +454,22 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.15);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  padding: 0;
   color: #fff;
-  border: 0;
-  width: 40px;
-  height: 40px;
+  font-size: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  font-size: 24px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 36px;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
 }
 .gallery__nav--prev {
   left: 16px;
@@ -585,7 +605,7 @@ button {
 .account__group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 }
 .account__toggle {
   width: 100%;
@@ -599,6 +619,11 @@ button {
   border-radius: var(--radius);
   font-size: 15px;
 }
+.account__toggle--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+}
 .account__list {
   display: flex;
   flex-direction: column;
@@ -609,7 +634,8 @@ button {
 .account__panel {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
   overflow: hidden;
 }
 .account__row {

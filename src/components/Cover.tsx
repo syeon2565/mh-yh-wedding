@@ -13,11 +13,10 @@ const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
 
 const SLIDES = [
   "main.jpeg",
-  "slide-01.jpeg",
-  "slide-02.jpeg",
-  "slide-03.jpeg",
-  "slide-04.jpeg",
-  "slide-05.jpeg",
+  "main/main-01.jpeg",
+  "main/main-02.jpeg",
+  "main/main-03.jpeg",
+  "main/main-04.jpeg",
 ].map((f) => `${import.meta.env.BASE_URL}images/${f}`);
 
 const FADE_MS = 800;
@@ -35,14 +34,13 @@ export default function Cover({ info }: Props) {
     setOutgoing(prev);
     outTimerRef.current = setTimeout(() => setOutgoing(null), FADE_MS);
     prevCurRef.current = cur;
-    return () => { if (outTimerRef.current) clearTimeout(outTimerRef.current); };
+    return () => {
+      if (outTimerRef.current) clearTimeout(outTimerRef.current);
+    };
   }, [cur]);
 
   useEffect(() => {
-    const id = setInterval(
-      () => setCur((c) => (c + 1) % SLIDES.length),
-      3000
-    );
+    const id = setInterval(() => setCur((c) => (c + 1) % SLIDES.length), 3000);
     return () => clearInterval(id);
   }, [cur]);
 
@@ -71,8 +69,22 @@ export default function Cover({ info }: Props) {
           else if (i === outgoing) cls += " cover__slide--out";
           return <img key={src} className={cls} src={src} alt="" />;
         })}
-        <button type="button" className="cover__arrow cover__arrow--prev" onClick={goPrev} aria-label="이전">&#10094;</button>
-        <button type="button" className="cover__arrow cover__arrow--next" onClick={goNext} aria-label="다음">&#10095;</button>
+        <button
+          type="button"
+          className="cover__arrow cover__arrow--prev"
+          onClick={goPrev}
+          aria-label="이전"
+        >
+          &#10094;
+        </button>
+        <button
+          type="button"
+          className="cover__arrow cover__arrow--next"
+          onClick={goNext}
+          aria-label="다음"
+        >
+          &#10095;
+        </button>
         <div className="cover__dots">
           {SLIDES.map((_, i) => (
             <button
@@ -87,17 +99,17 @@ export default function Cover({ info }: Props) {
       </div>
       <div className="cover__info">
         <p className="cover__names">
-          {info.groom.name}{" "}
-          <span className="cover__and">&amp;</span> {info.bride.name}
+          {info.groom.name} <span className="cover__and">&amp;</span>{" "}
+          {info.bride.name}
         </p>
+        <p className="cover__tag">We are getting married</p>
+        <hr className="cover__divider" />
         <div className="cover__details">
           <p className="cover__datetime">
-            {month}.{day} {weekday}요일 {timeText}
+            {d.getMonth() + 1}월 {d.getDate()}일 {weekday}요일 {timeText}
           </p>
           <p className="cover__venue">{info.venue.name}</p>
         </div>
-        <hr className="cover__divider" />
-        <p className="cover__tag">We are getting married</p>
       </div>
     </section>
   );

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const PHOTOS = Array.from(
-  { length: 9 },
-  (_, i) => `${import.meta.env.BASE_URL}images/gallery-${String(i + 1).padStart(2, "0")}.jpeg`
+  { length: 12 },
+  (_, i) => `${import.meta.env.BASE_URL}images/gallery/gallery-${String(i + 1).padStart(2, "0")}.jpeg`
 );
 
 export default function Gallery() {
@@ -57,7 +57,7 @@ export default function Gallery() {
             }}
             aria-label="이전"
           >
-            ‹
+            &#10094;
           </button>
           <button
             type="button"
@@ -68,7 +68,7 @@ export default function Gallery() {
             }}
             aria-label="다음"
           >
-            ›
+            &#10095;
           </button>
           <span className="gallery__counter">
             {openIdx + 1} / {PHOTOS.length}

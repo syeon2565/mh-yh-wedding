@@ -19,18 +19,20 @@ type Props = {
 function Card({ role, person }: { role: "신랑" | "신부"; person: Person }) {
   return (
     <div className="profile__card">
-      <img
-        className="profile__photo"
-        src={person.photo}
-        alt=""
-        style={{ objectPosition: person.photoPosition ?? "center" }}
-      />
+      <div className="profile__photo-wrap">
+        <img
+          className="profile__photo"
+          src={person.photo}
+          alt=""
+          style={{ objectPosition: person.photoPosition ?? "center" }}
+        />
+        <div className="profile__overlay">
+          <span className="profile__role">{role}</span>
+          <span className="profile__name">{person.name}</span>
+        </div>
+      </div>
       <p className="profile__parents">
-        {person.father} · {person.mother}의 {role === "신랑" ? "장남" : "장녀"}
-      </p>
-      <p className="profile__name">
-        <span className="profile__role">{role}</span>
-        {person.name}
+        {person.father} · {person.mother}의 {role === "신랑" ? "아들" : "딸"}
       </p>
     </div>
   );
@@ -52,7 +54,7 @@ export default function Profile({ info }: Props) {
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
   const fmt = (d: Date) =>
-    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
 
   return (
     <section className="section profile">
@@ -69,7 +71,7 @@ export default function Profile({ info }: Props) {
         <div className="profile__days-timeline">
           <div className="profile__days-endpoint">
             <span className="profile__days-dot" />
-            <span className="profile__days-label">시작</span>
+            <span className="profile__days-label">첫 만남</span>
             <span className="profile__days-date">{fmt(start)}</span>
           </div>
           <div className="profile__days-line">

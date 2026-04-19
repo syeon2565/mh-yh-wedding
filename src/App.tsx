@@ -4,7 +4,6 @@ import Profile from "./components/Profile";
 import Calendar from "./components/Calendar";
 import Gallery from "./components/Gallery";
 import Location from "./components/Location";
-import Rsvp from "./components/Rsvp";
 import Account from "./components/Account";
 import Guestbook from "./components/Guestbook";
 import Share from "./components/Share";
@@ -19,8 +18,8 @@ const weddingInfo = {
   },
   bride: {
     name: "유연후",
-    father: "유아버지",
-    mother: "○어머니",
+    father: "유동용",
+    mother: "박미선",
     photo: `${import.meta.env.BASE_URL}images/bride.jpg`,
     photoPosition: "50% 0%",
   },
@@ -46,7 +45,6 @@ export default function App() {
       <Calendar date={weddingInfo.date} groomName={weddingInfo.groom.name} brideName={weddingInfo.bride.name} />
       <Gallery />
       <Location venue={weddingInfo.venue} isAfterWedding={isAfterWedding} />
-      <Rsvp isAfterWedding={isAfterWedding} />
       <Account isAfterWedding={isAfterWedding} />
       <Guestbook isAfterWedding={isAfterWedding} />
       <Share isAfterWedding={isAfterWedding} />

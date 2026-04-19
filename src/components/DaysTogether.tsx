@@ -16,7 +16,9 @@ export default function DaysTogether({ startDate }: Props) {
   const diffTime = now.getTime() - start.getTime();
 
   const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const hours = Math.floor(
+    (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+  );
   const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
 
@@ -39,7 +41,7 @@ export default function DaysTogether({ startDate }: Props) {
       <div className="days-together__timeline">
         <div className="days-together__endpoint">
           <span className="days-together__ep-dot" />
-          <span className="days-together__ep-label">시작</span>
+          <span className="days-together__ep-label">첫 만남</span>
           <span className="days-together__ep-date">{formatDate(start)}</span>
         </div>
         <div className="days-together__line">
