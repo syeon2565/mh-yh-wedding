@@ -175,6 +175,8 @@ const Venue = styled.p`
 const Cover = ({ info }: Props) => {
   const [cur, setCur] = useState(0);
   const [outgoing, setOutgoing] = useState<number | null>(null);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const allLoaded = loadedCount >= SLIDES.length;
   const prevCurRef = useRef(0);
   const outTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -191,9 +193,10 @@ const Cover = ({ info }: Props) => {
   }, [cur]);
 
   useEffect(() => {
+    if (!allLoaded) return;
     const id = setInterval(() => setCur((c) => (c + 1) % SLIDES.length), 3000);
     return () => clearInterval(id);
-  }, [cur]);
+  }, [cur, allLoaded]);
 
   const goPrev = () => setCur((c) => (c - 1 + SLIDES.length) % SLIDES.length);
   const goNext = () => setCur((c) => (c + 1) % SLIDES.length);
@@ -219,6 +222,7 @@ const Cover = ({ info }: Props) => {
             alt=""
             $active={i === cur}
             $out={i === outgoing}
+            onLoad={() => setLoadedCount((n) => n + 1)}
           />
         ))}
         <Arrow type="button" $direction="prev" onClick={goPrev} aria-label="이전">
