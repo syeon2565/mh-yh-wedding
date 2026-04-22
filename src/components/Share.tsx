@@ -15,7 +15,7 @@ const SHARE_IMAGE = "https://syeon2565.github.io/mh-yh-wedding/images/main.jpeg"
 const ShareSection = styled(Section)`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 `;
 
 const Actions = styled.div`
@@ -71,6 +71,12 @@ const Share = ({ isAfterWedding }: Props) => {
         imageUrl: SHARE_IMAGE,
         link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL },
       },
+      buttons: [
+        {
+          title: "모바일 청첩장 바로보기",
+          link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL },
+        },
+      ],
     });
   };
 

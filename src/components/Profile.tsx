@@ -23,6 +23,7 @@ const ProfileSection = styled(Section)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
 `;
 
 const Grid = styled.div`
@@ -88,7 +89,6 @@ const Parents = styled.p`
 `;
 
 const Days = styled.div`
-  margin-top: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;

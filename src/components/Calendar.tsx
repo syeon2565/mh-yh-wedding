@@ -33,24 +33,48 @@ const CalGrid = styled.div`
   gap: 4px;
 `;
 
-const CalHead = styled.div`
+const CalHead = styled('div', {
+  shouldForwardProp: (prop) => prop !== '$dayType',
+})<{ $dayType?: 'sun' | 'sat' }>`
   font-size: 12px;
-  color: ${colors.muted};
+  color: ${({ $dayType }) =>
+    $dayType === 'sun' ? '#d97a7a' :
+    $dayType === 'sat' ? '#6a9fd4' :
+    colors.muted};
   padding: 8px 0;
 `;
 
 const CalCell = styled('div', {
-  shouldForwardProp: (prop) => prop !== '$isTarget',
-})<{ $isTarget: boolean }>`
+  shouldForwardProp: (prop) => !['$isTarget', '$dayType', '$isHoliday'].includes(prop),
+})<{ $isTarget: boolean; $dayType?: 'sun' | 'sat'; $isHoliday?: boolean }>`
   font-size: 14px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: ${({ $isTarget }) => ($isTarget ? colors.point : 'transparent')};
-  color: ${({ $isTarget }) => ($isTarget ? '#fff' : 'inherit')};
-  font-weight: ${({ $isTarget }) => ($isTarget ? 600 : 'normal')};
+  position: relative;
+
+  &::before {
+    content: ${({ $isTarget }) => ($isTarget ? '""' : 'none')};
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border-radius: 50%;
+    background: ${colors.point};
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    color: ${({ $isTarget, $dayType, $isHoliday }) =>
+      $isTarget ? '#fff' :
+      $isHoliday || $dayType === 'sun' ? '#d97a7a' :
+      $dayType === 'sat' ? '#6a9fd4' :
+      'inherit'};
+    font-weight: ${({ $isTarget }) => ($isTarget ? 600 : 'normal')};
+  }
 `;
 
 const Countdown = styled.div`
@@ -141,9 +165,10 @@ const Calendar = ({ date, groomName, brideName }: Props) => {
     ? calcTimeDiff(date, now)
     : calcTimeDiff(now, date);
 
-  const daysCount = isAfterWedding
-    ? Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24))
-    : Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  // 00시 기준으로 D-day 계산
+  const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const weddingMidnight = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const daysCount = Math.ceil((weddingMidnight.getTime() - todayMidnight.getTime()) / (1000 * 60 * 60 * 24));
 
   return (
     <CalendarSection>
@@ -153,14 +178,29 @@ const Calendar = ({ date, groomName, brideName }: Props) => {
       </SectionSubtitle>
 
       <CalGrid>
-        {WEEK.map((w) => (
-          <CalHead key={w}>{w}</CalHead>
+        {WEEK.map((w, i) => (
+          <CalHead
+            key={w}
+            $dayType={i === 0 ? 'sun' : i === 6 ? 'sat' : undefined}
+          >
+            {w}
+          </CalHead>
         ))}
-        {cells.map((c, i) => (
-          <CalCell key={i} $isTarget={c === day}>
-            {c ?? ""}
-          </CalCell>
-        ))}
+        {cells.map((c, i) => {
+          const dayOfWeek = i % 7;
+          // 2026년 6월 공휴일: 6일 (현충일)
+          const isHoliday = c === 6;
+          return (
+            <CalCell
+              key={i}
+              $isTarget={c === day}
+              $dayType={dayOfWeek === 0 ? 'sun' : dayOfWeek === 6 ? 'sat' : undefined}
+              $isHoliday={isHoliday}
+            >
+              <span>{c ?? ""}</span>
+            </CalCell>
+          );
+        })}
       </CalGrid>
 
       <Countdown>
@@ -185,7 +225,7 @@ const Calendar = ({ date, groomName, brideName }: Props) => {
       {isAfterWedding ? (
         <Message>
           참석해주신 모든 분들 감사합니다.<br />
-          {groomName} <Heart>♥</Heart> {brideName} 결혼한지 <strong>{daysCount}일</strong>째
+          {groomName} <Heart>♥</Heart> {brideName} 결혼한지 <strong>{Math.abs(daysCount)}일</strong>째
         </Message>
       ) : (
         <Message>

@@ -12,9 +12,11 @@ export const SectionTitle = styled.h2`
   letter-spacing: 0.2em;
   color: ${colors.point};
   font-weight: 500;
+  margin: 0;
 `;
 
 export const SectionSubtitle = styled.p`
   font-size: 14px;
   color: ${colors.muted};
+  margin: 0;
 `;

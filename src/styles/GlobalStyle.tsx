@@ -12,7 +12,7 @@ const globalStyles = css`
     padding: 0;
     background: #eee;
     color: ${colors.fg};
-    font-family: "Wanted Sans Variable", "Wanted Sans", "Pretendard",
+    font-family: "Wanted Sans", "Pretendard",
       -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR",
       sans-serif;
     line-height: 1.6;

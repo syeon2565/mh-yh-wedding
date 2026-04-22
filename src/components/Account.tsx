@@ -27,7 +27,7 @@ const getName = (person: PersonAccounts, role: string) => {
 const AccountSection = styled(Section)`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 24px;
 `;
 
 const Group = styled.div`

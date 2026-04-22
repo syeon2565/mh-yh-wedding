@@ -40,6 +40,12 @@ const inputStyles = `
   font-size: 14px;
   background: ${colors.card};
   resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: ${colors.point};
+  }
 `;
 
 const Input = styled.input`
@@ -51,6 +57,7 @@ const Textarea = styled.textarea`
 `;
 
 const SubmitBtn = styled.button`
+  margin-top: 16px;
   padding: 12px;
   background: ${colors.point};
   color: #fff;
@@ -65,6 +72,7 @@ const List = styled.ul`
   gap: 8px;
   list-style: none;
   padding: 0;
+  margin: 0;
   text-align: left;
 `;
 

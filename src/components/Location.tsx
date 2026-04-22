@@ -19,6 +19,12 @@ type Props = {
 const LocationSection = styled(Section)`
   display: flex;
   flex-direction: column;
+  gap: 24px;
+`;
+
+const VenueInfo = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 `;
 
@@ -45,8 +51,6 @@ const MapBox = styled.div`
   aspect-ratio: 16 / 10;
   background: #e8e4dc;
   border-radius: ${radius};
-  margin-top: 20px;
-  margin-bottom: 12px;
   overflow: hidden;
 
   iframe {
@@ -89,7 +93,6 @@ const BtnButton = styled.button`
 `;
 
 const Transport = styled.div`
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -208,9 +211,11 @@ const Location = ({ venue, isAfterWedding }: Props) => {
   return (
     <LocationSection>
       <SectionTitle>LOCATION</SectionTitle>
-      <VenueName>{venue.name}</VenueName>
-      <Address>{venue.address}</Address>
-      <Tel href={`tel:${venue.tel}`}>Tel. {venue.tel}</Tel>
+      <VenueInfo>
+        <VenueName>{venue.name}</VenueName>
+        <Address>{venue.address}</Address>
+        <Tel href={`tel:${venue.tel}`}>Tel. {venue.tel}</Tel>
+      </VenueInfo>
 
       <MapBox>
         <div id="kakao-map" style={{ width: "100%", height: "100%" }} />

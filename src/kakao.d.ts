@@ -19,8 +19,8 @@ interface Window {
     isInitialized: () => boolean;
     Share: {
       sendDefault: (options:
-        | { objectType: "feed"; content: KakaoShareFeedContent }
-        | { objectType: "location"; address: string; addressTitle: string; content: KakaoShareFeedContent }
+        | { objectType: "feed"; content: KakaoShareFeedContent; buttons?: Array<{ title: string; link: { mobileWebUrl: string; webUrl: string } }> }
+        | { objectType: "location"; address: string; addressTitle: string; content: KakaoShareFeedContent; buttons?: Array<{ title: string; link: { mobileWebUrl: string; webUrl: string } }> }
       ) => void;
     };
   };

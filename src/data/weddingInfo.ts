@@ -3,7 +3,7 @@ export const weddingInfo = {
     name: "박민혁",
     father: "박성록",
     mother: "정경란",
-    photo: `${import.meta.env.BASE_URL}images/groom.jpg`,
+    photo: `${import.meta.env.BASE_URL}images/groom.jpeg`,
     photoPosition: "50% 0%",
     accounts: [
       { role: "아버지", bank: "신한은행", number: "110-259923993" },
@@ -15,7 +15,7 @@ export const weddingInfo = {
     name: "유연후",
     father: "유동용",
     mother: "박미선",
-    photo: `${import.meta.env.BASE_URL}images/bride.jpg`,
+    photo: `${import.meta.env.BASE_URL}images/bride.jpeg`,
     photoPosition: "50% 0%",
     accounts: [
       { role: "아버지", bank: "하나은행", number: "196-890054-23907" },
@@ -26,7 +26,7 @@ export const weddingInfo = {
   startDate: "2021-10-17",
   date: new Date("2026-06-27T11:00:00+09:00"),
   venue: {
-    name: "목포 예술웨딩컨벤션",
+    name: "목포 예술웨딩컨벤션 2층 하비홀",
     address: "전남 목포시 남농로 9",
     tel: "061-276-0050",
     mapUrl: "https://naver.me/IIt6xUQm",

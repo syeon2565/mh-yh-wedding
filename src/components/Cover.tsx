@@ -16,11 +16,11 @@ type Props = {
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
 
 const SLIDES = [
-  "main.jpeg",
-  "main/main-01.jpeg",
-  "main/main-02.jpeg",
-  "main/main-03.jpeg",
-  "main/main-04.jpeg",
+  "slide/slide-01.jpeg",
+  "slide/slide-02.jpeg",
+  "slide/slide-03.jpeg",
+  "slide/slide-04.jpeg",
+  "slide/slide-05.jpeg",
 ].map((f) => `${import.meta.env.BASE_URL}images/${f}`);
 
 const FADE_MS = 800;
@@ -226,10 +226,14 @@ const Cover = ({ info }: Props) => {
           />
         ))}
         <Arrow type="button" $direction="prev" onClick={goPrev} aria-label="이전">
-          &#10094;
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+            <path fillRule="evenodd" clipRule="evenodd" d="M0.390524 7.60946C-0.130175 7.08876 -0.130175 6.24454 0.390524 5.72384L5.72386 0.390505C6.24456 -0.130195 7.08878 -0.130195 7.60948 0.390505C8.13017 0.911203 8.13017 1.75542 7.60948 2.27612L3.21895 6.66665L7.60948 11.0572C8.13017 11.5779 8.13017 12.4221 7.60948 12.9428C7.08878 13.4635 6.24456 13.4635 5.72386 12.9428L0.390524 7.60946Z" fill="#fff"/>
+          </svg>
         </Arrow>
         <Arrow type="button" $direction="next" onClick={goNext} aria-label="다음">
-          &#10095;
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+            <path fillRule="evenodd" clipRule="evenodd" d="M7.60948 5.72384C8.13017 6.24454 8.13017 7.08876 7.60948 7.60946L2.27614 12.9428C1.75544 13.4635 0.911224 13.4635 0.390526 12.9428C-0.130173 12.4221 -0.130173 11.5779 0.390526 11.0572L4.78105 6.66665L0.390526 2.27612C-0.130173 1.75542 -0.130173 0.911203 0.390526 0.390505C0.911224 -0.130195 1.75544 -0.130195 2.27614 0.390505L7.60948 5.72384Z" fill="#fff"/>
+          </svg>
         </Arrow>
         <Dots>
           {SLIDES.map((_, i) => (
