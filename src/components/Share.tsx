@@ -61,7 +61,7 @@ const Share = ({ isAfterWedding }: Props) => {
     const { Kakao } = window;
     if (!Kakao) return;
     if (!Kakao.isInitialized()) Kakao.init(KAKAO_JS_KEY);
-    Kakao.Share.sendDefault({
+    Kakao.Link.sendDefault({
       objectType: "feed",
       content: {
         title: "민혁 ♥ 연후 결혼합니다",
