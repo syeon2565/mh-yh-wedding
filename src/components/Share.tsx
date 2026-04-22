@@ -10,7 +10,8 @@ type Props = {
 
 const KAKAO_JS_KEY = import.meta.env.VITE_KAKAO_JS_KEY as string;
 const SHARE_URL = "https://syeon2565.github.io/mh-yh-wedding/";
-const SHARE_IMAGE = "https://syeon2565.github.io/mh-yh-wedding/images/main.jpeg";
+const SHARE_IMAGE =
+  "https://syeon2565.github.io/mh-yh-wedding/images/main.jpeg";
 
 const ShareSection = styled(Section)`
   display: flex;
@@ -67,12 +68,18 @@ const Share = ({ isAfterWedding }: Props) => {
         title: "민혁 ♥ 연후 결혼합니다",
         description: "2026년 6월 27일 토요일 오전 11시\n목포 예술웨딩컨벤션",
         imageUrl: SHARE_IMAGE,
-        link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL },
+        link: {
+          mobileWebUrl: "https://syeon2565.github.io/mh-yh-wedding/",
+          webUrl: "https://syeon2565.github.io/mh-yh-wedding/",
+        },
       },
       buttons: [
         {
           title: "청첩장 보기",
-          link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL },
+          link: {
+            mobileWebUrl: "https://syeon2565.github.io/mh-yh-wedding/",
+            webUrl: "https://syeon2565.github.io/mh-yh-wedding/",
+          },
         },
       ],
     });
@@ -81,9 +88,7 @@ const Share = ({ isAfterWedding }: Props) => {
   return (
     <ShareSection>
       <SectionTitle>SHARE</SectionTitle>
-      <SectionSubtitle>
-        소중한 분들에게 청첩장을 공유해 보세요
-      </SectionSubtitle>
+      <SectionSubtitle>소중한 분들에게 청첩장을 공유해 보세요</SectionSubtitle>
       <Actions>
         <ShareBtn type="button" onClick={shareKakao}>
           카카오톡 공유
