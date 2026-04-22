@@ -30,6 +30,12 @@ const AccountSection = styled(Section)`
   gap: 24px;
 `;
 
+const GroupsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
 const Group = styled.div`
   display: flex;
   flex-direction: column;
@@ -143,45 +149,47 @@ const Account = ({ isAfterWedding, groom, bride }: Props) => {
     <AccountSection>
       <SectionTitle>마음 전하실 곳</SectionTitle>
 
-      {groups.map(({ key, label, person }) => (
-        <Group key={key}>
-          <Toggle
-            type="button"
-            $open={open === key}
-            onClick={() => toggle(key)}
-            aria-expanded={open === key}
-          >
-            {label}
-            <span>{open === key ? "−" : "+"}</span>
-          </Toggle>
-          {open === key && (
-            <Panel>
-              {person.accounts.map((a, idx) => (
-                <div key={a.number}>
-                  {idx > 0 && <Divider />}
-                  <Row>
-                    <RoleLabel>{a.role}</RoleLabel>
-                    <NameAndAccount>
-                      <PersonName>{getName(person, a.role)}</PersonName>
-                      <AccountNumber>{a.bank} {a.number}</AccountNumber>
-                    </NameAndAccount>
-                    <CopyBtn
-                      type="button"
-                      onClick={() => copyAccount(a.bank, a.number)}
-                      aria-label="계좌번호 복사"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                      </svg>
-                    </CopyBtn>
-                  </Row>
-                </div>
-              ))}
-            </Panel>
-          )}
-        </Group>
-      ))}
+      <GroupsWrapper>
+        {groups.map(({ key, label, person }) => (
+          <Group key={key}>
+            <Toggle
+              type="button"
+              $open={open === key}
+              onClick={() => toggle(key)}
+              aria-expanded={open === key}
+            >
+              {label}
+              <span>{open === key ? "−" : "+"}</span>
+            </Toggle>
+            {open === key && (
+              <Panel>
+                {person.accounts.map((a, idx) => (
+                  <div key={a.number}>
+                    {idx > 0 && <Divider />}
+                    <Row>
+                      <RoleLabel>{a.role}</RoleLabel>
+                      <NameAndAccount>
+                        <PersonName>{getName(person, a.role)}</PersonName>
+                        <AccountNumber>{a.bank} {a.number}</AccountNumber>
+                      </NameAndAccount>
+                      <CopyBtn
+                        type="button"
+                        onClick={() => copyAccount(a.bank, a.number)}
+                        aria-label="계좌번호 복사"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                      </CopyBtn>
+                    </Row>
+                  </div>
+                ))}
+              </Panel>
+            )}
+          </Group>
+        ))}
+      </GroupsWrapper>
       <Toast message={toast} />
     </AccountSection>
   );

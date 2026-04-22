@@ -118,7 +118,7 @@ const TransportItem = styled.div`
 const TransportIcon = styled.span`
   font-size: 18px;
   flex-shrink: 0;
-  margin-top: 1px;
+  line-height: 1;
 `;
 
 const TransportTitle = styled.p`
@@ -126,6 +126,7 @@ const TransportTitle = styled.p`
   font-weight: 600;
   color: ${colors.fg};
   margin: 0 0 4px;
+  line-height: 18px;
 `;
 
 const TransportDesc = styled.p`
@@ -153,6 +154,29 @@ const BusRoute = styled.div`
   gap: 1px;
 `;
 
+const BusGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const BusGroupLabel = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: ${colors.fg};
+  margin-top: 8px;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+`;
+
+const BusDivider = styled.hr`
+  border: none;
+  border-top: 1px solid ${colors.line};
+  margin: 8px 0 4px;
+`;
+
 const BusNum = styled.span`
   font-size: 12px;
   font-weight: 600;
@@ -166,6 +190,7 @@ const BusNum = styled.span`
   text-align: center;
   display: inline-block;
 `;
+
 
 const LAT = 34.7956;
 const LNG = 126.4094;
@@ -253,41 +278,48 @@ const Location = ({ venue, isAfterWedding }: Props) => {
           <TransportIcon>🚌</TransportIcon>
           <div>
             <TransportTitle>버스</TransportTitle>
+            <BusDivider />
             <BusList>
-              <BusRow>
-                <BusNum>66-1</BusNum>
-                <BusRoute>
-                  <TransportDesc>목포버스터미널 승차</TransportDesc>
-                  <TransportDesc>용해동아아파트후문건너 하차</TransportDesc>
-                </BusRoute>
-              </BusRow>
-              <BusRow>
-                <BusNum>77</BusNum>
-                <BusRoute>
-                  <TransportDesc>목포버스터미널 승차</TransportDesc>
-                  <TransportDesc>제일중학교건너 하차</TransportDesc>
-                </BusRoute>
-              </BusRow>
-              <BusRow>
-                <div style={{ display: "flex", gap: "4px" }}>
-                  <BusNum>300A</BusNum>
-                  <BusNum>66</BusNum>
-                </div>
-                <BusRoute>
-                  <TransportDesc>KT목포빌딩 승차</TransportDesc>
-                  <TransportDesc>용해동아아파트후문 하차</TransportDesc>
-                </BusRoute>
-              </BusRow>
-              <BusRow>
-                <div style={{ display: "flex", gap: "4px" }}>
-                  <BusNum>500</BusNum>
-                  <BusNum>210</BusNum>
-                </div>
-                <BusRoute>
-                  <TransportDesc>목포역 승차</TransportDesc>
-                  <TransportDesc>용해동아아파트후문 하차</TransportDesc>
-                </BusRoute>
-              </BusRow>
+              <BusGroup>
+                <BusGroupLabel>버스터미널</BusGroupLabel>
+                <BusRow>
+                  <BusNum>66-1</BusNum>
+                  <BusRoute>
+                    <TransportDesc>목포버스터미널 승차</TransportDesc>
+                    <TransportDesc>용해동아아파트후문건너 하차</TransportDesc>
+                  </BusRoute>
+                </BusRow>
+                <BusRow>
+                  <BusNum>77</BusNum>
+                  <BusRoute>
+                    <TransportDesc>목포버스터미널 승차</TransportDesc>
+                    <TransportDesc>제일중학교건너 하차</TransportDesc>
+                  </BusRoute>
+                </BusRow>
+              </BusGroup>
+              <BusGroup>
+                <BusGroupLabel>목포역</BusGroupLabel>
+                <BusRow>
+                  <div style={{ display: "flex", gap: "4px" }}>
+                    <BusNum>300A</BusNum>
+                    <BusNum>66</BusNum>
+                  </div>
+                  <BusRoute>
+                    <TransportDesc>KT목포빌딩 승차</TransportDesc>
+                    <TransportDesc>용해동아아파트후문 하차</TransportDesc>
+                  </BusRoute>
+                </BusRow>
+                <BusRow>
+                  <div style={{ display: "flex", gap: "4px" }}>
+                    <BusNum>500</BusNum>
+                    <BusNum>210</BusNum>
+                  </div>
+                  <BusRoute>
+                    <TransportDesc>목포역 승차</TransportDesc>
+                    <TransportDesc>용해동아아파트후문 하차</TransportDesc>
+                  </BusRoute>
+                </BusRow>
+              </BusGroup>
             </BusList>
           </div>
         </TransportItem>
