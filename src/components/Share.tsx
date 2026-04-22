@@ -62,18 +62,16 @@ const Share = ({ isAfterWedding }: Props) => {
     if (!Kakao) return;
     if (!Kakao.isInitialized()) Kakao.init(KAKAO_JS_KEY);
     Kakao.Share.sendDefault({
-      objectType: "location",
-      address: "전남 목포시 남농로 9",
-      addressTitle: "목포 예술웨딩컨벤션",
+      objectType: "feed",
       content: {
         title: "민혁 ♥ 연후 결혼합니다",
-        description: "2026년 6월 27일 토요일 오전 11시",
+        description: "2026년 6월 27일 토요일 오전 11시\n목포 예술웨딩컨벤션",
         imageUrl: SHARE_IMAGE,
         link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL },
       },
       buttons: [
         {
-          title: "모바일 청첩장 바로보기",
+          title: "청첩장 보기",
           link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL },
         },
       ],
