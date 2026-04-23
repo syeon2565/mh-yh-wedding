@@ -23,10 +23,11 @@ export const weddingInfo = {
       { role: "신부", bank: "카카오뱅크", number: "3333-13-8609330" },
     ],
   },
-  startDate: "2021-10-17",
+  startDate: "2021-10-17T20:00:00+09:00",
   date: new Date("2026-06-27T11:00:00+09:00"),
   venue: {
-    name: "목포 예술웨딩컨벤션 2층 하비홀",
+    name: "목포예술웨딩컨벤션",
+    hall: "2층 하비홀",
     address: "전남 목포시 남농로 9",
     tel: "061-276-0050",
     mapUrl: "https://naver.me/IIt6xUQm",

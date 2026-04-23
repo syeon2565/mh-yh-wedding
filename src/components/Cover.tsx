@@ -9,7 +9,7 @@ type Props = {
     groom: { name: string };
     bride: { name: string };
     date: Date;
-    venue: { name: string };
+    venue: { name: string; hall?: string };
   };
 };
 
@@ -257,7 +257,7 @@ const Cover = ({ info }: Props) => {
           <DateTime>
             {d.getMonth() + 1}월 {d.getDate()}일 {weekday}요일 {timeText}
           </DateTime>
-          <Venue>{info.venue.name}</Venue>
+          <Venue>{info.venue.hall ? `${info.venue.name} ${info.venue.hall}` : info.venue.name}</Venue>
         </Details>
       </InfoBlock>
     </CoverSection>
