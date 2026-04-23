@@ -69,16 +69,16 @@ const Share = ({ isAfterWedding }: Props) => {
         description: "2026년 6월 27일 토요일 오전 11시\n목포 예술웨딩컨벤션",
         imageUrl: SHARE_IMAGE,
         link: {
-          mobileWebUrl: "https://syeon2565.github.io/mh-yh-wedding/",
-          webUrl: "https://syeon2565.github.io/mh-yh-wedding/",
+          mobileWebUrl: SHARE_URL,
+          webUrl: SHARE_URL,
         },
       },
       buttons: [
         {
           title: "청첩장 보기",
           link: {
-            mobileWebUrl: "https://syeon2565.github.io/mh-yh-wedding/",
-            webUrl: "https://syeon2565.github.io/mh-yh-wedding/",
+            mobileWebUrl: SHARE_URL,
+            webUrl: SHARE_URL,
           },
         },
       ],
