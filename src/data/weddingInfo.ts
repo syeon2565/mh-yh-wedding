@@ -23,7 +23,7 @@ export const weddingInfo = {
       { role: "신부", bank: "카카오뱅크", number: "3333-13-8609330" },
     ],
   },
-  startDate: "2021-10-17T20:00:00+09:00",
+  startDate: "2021-10-17T00:00:00+09:00",
   date: new Date("2026-06-27T11:00:00+09:00"),
   venue: {
     name: "목포예술웨딩컨벤션",
