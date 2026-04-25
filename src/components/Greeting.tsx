@@ -18,9 +18,9 @@ const GreetingBody = styled.p`
   margin: 0;
 `;
 
-const Highlight = styled.span<{ color: 'pink' | 'blue' }>`
+const Highlight = styled.span<{ color: "pink" | "blue" }>`
   font-weight: 700;
-  color: ${({ color }) => (color === 'pink' ? '#f9c4d2' : '#89CFF0')};
+  color: ${({ color }) => (color === "pink" ? "#f9c4d2" : "#89CFF0")};
 `;
 
 const Greeting = ({ isAfterWedding }: Props) => {
@@ -30,14 +30,16 @@ const Greeting = ({ isAfterWedding }: Props) => {
     <GreetingSection>
       <SectionTitle>INVITATION</SectionTitle>
       <GreetingBody>
-        <Highlight color="pink">연</Highlight>: 연애의 시작은 설렘이었고
+        <Highlight color="blue">민</Highlight>: 민낯 같은 진심으로
         <br />
-        <Highlight color="pink">후</Highlight>: 후에는 서로의 전부가 되어
+        <Highlight color="blue">혁</Highlight>: 혁명같은 사랑을 시작해
         <br />
         <br />
-        <Highlight color="blue">민</Highlight>: 민낯까지 사랑하게 된 지금
+        <Highlight color="pink">연</Highlight>: 연을 맺은 두사람이 하나가 된
+        오늘
         <br />
-        <Highlight color="blue">혁</Highlight>: 혁명처럼 인생을 바꾼 결혼을 합니다
+        <Highlight color="pink">후</Highlight>: 후회없는 사랑으로 평생을
+        함께하고자 합니다
         <br />
         <br />
         2026년 6월 27일,
