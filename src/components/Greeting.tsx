@@ -42,7 +42,7 @@ const Greeting = ({ isAfterWedding }: Props) => {
         함께하고자 합니다
         <br />
         <br />
-        2026년 6월 27일,
+        2026년 6월 27일
         <br />
         소중한 걸음으로 함께해 주시면 감사하겠습니다
       </GreetingBody>
