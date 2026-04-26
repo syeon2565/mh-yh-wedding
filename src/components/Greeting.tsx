@@ -35,8 +35,7 @@ const Greeting = ({ isAfterWedding }: Props) => {
         <Highlight color="blue">혁</Highlight>: 혁명같은 사랑을 시작해
         <br />
         <br />
-        <Highlight color="pink">연</Highlight>: 연을 맺은 두사람이 하나가 된
-        오늘
+        <Highlight color="pink">연</Highlight>: 연을 맺은 두사람이 하나가 되어
         <br />
         <Highlight color="pink">후</Highlight>: 후회없는 사랑으로 평생을
         함께하고자 합니다
