@@ -99,12 +99,31 @@ const EntryMessage = styled.p`
   margin: 0;
 `;
 
+const LoadMoreBtn = styled.button`
+  padding: 12px;
+  background: transparent;
+  color: ${colors.muted};
+  border: 1px solid ${colors.line};
+  border-radius: ${radius};
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: ${colors.point};
+    color: ${colors.point};
+  }
+`;
+
+const ITEMS_PER_PAGE = 10;
+
 const Guestbook = ({ isAfterWedding }: Props) => {
   if (isAfterWedding) return null;
   const [entries, setEntries] = useState<Entry[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const { toast, showToast } = useToast();
 
   useEffect(() => {
@@ -164,13 +183,19 @@ const Guestbook = ({ isAfterWedding }: Props) => {
       </Form>
 
       <List>
-        {entries.map((e) => (
+        {entries.slice(0, visibleCount).map((e) => (
           <Item key={e.id}>
             <EntryName>{e.name}</EntryName>
             <EntryMessage>{e.message}</EntryMessage>
           </Item>
         ))}
       </List>
+
+      {visibleCount < entries.length && (
+        <LoadMoreBtn onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}>
+          더보기
+        </LoadMoreBtn>
+      )}
       <Toast message={toast} />
     </GuestbookSection>
   );
