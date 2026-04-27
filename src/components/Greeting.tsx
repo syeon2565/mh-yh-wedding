@@ -18,7 +18,7 @@ const GreetingBody = styled.p`
   margin: 0;
 `;
 
-const Highlight = styled.span<{ color: "pink" | "blue" }>`
+const Highlight = styled.b<{ color: "pink" | "blue" }>`
   font-weight: 700;
   color: ${({ color }) => (color === "pink" ? "#f9c4d2" : "#89CFF0")};
 `;

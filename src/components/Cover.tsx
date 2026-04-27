@@ -48,8 +48,8 @@ const Slideshow = styled.div`
   overflow: hidden;
 `;
 
-const Slide = styled('img', {
-  shouldForwardProp: (prop) => prop !== '$active' && prop !== '$out',
+const Slide = styled("img", {
+  shouldForwardProp: (prop) => prop !== "$active" && prop !== "$out",
 })<{ $active: boolean; $out: boolean }>`
   position: absolute;
   inset: 0;
@@ -60,19 +60,24 @@ const Slide = styled('img', {
   z-index: ${({ $active, $out }) => ($active ? 1 : $out ? 2 : 0)};
   animation: ${({ $active, $out }) =>
     $active
-      ? css`${brightenIn} 0.8s ease-in-out forwards`
+      ? css`
+          ${brightenIn} 0.8s ease-in-out forwards
+        `
       : $out
-        ? css`${dimOut} 0.8s ease-in-out forwards`
-        : 'none'};
+        ? css`
+            ${dimOut} 0.8s ease-in-out forwards
+          `
+        : "none"};
 `;
 
-const Arrow = styled('button', {
-  shouldForwardProp: (prop) => prop !== '$direction',
-})<{ $direction: 'prev' | 'next' }>`
+const Arrow = styled("button", {
+  shouldForwardProp: (prop) => prop !== "$direction",
+})<{ $direction: "prev" | "next" }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${({ $direction }) => ($direction === 'prev' ? 'left: 12px;' : 'right: 12px;')}
+  ${({ $direction }) =>
+    $direction === "prev" ? "left: 12px;" : "right: 12px;"}
   z-index: 10;
   background: rgba(255, 255, 255, 0.25);
   border: none;
@@ -101,14 +106,15 @@ const Dots = styled.div`
   z-index: 10;
 `;
 
-const Dot = styled('button', {
-  shouldForwardProp: (prop) => prop !== '$active',
+const Dot = styled("button", {
+  shouldForwardProp: (prop) => prop !== "$active",
 })<{ $active: boolean }>`
   width: 6px;
   height: 6px;
   border-radius: 50%;
   border: none;
-  background: ${({ $active }) => ($active ? '#fff' : 'rgba(255, 255, 255, 0.5)')};
+  background: ${({ $active }) =>
+    $active ? "#fff" : "rgba(255, 255, 255, 0.5)"};
   padding: 0;
   cursor: pointer;
   transition: background 0.3s;
@@ -117,8 +123,8 @@ const Dot = styled('button', {
 const InfoBlock = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  gap: 16px;
   padding: 40px 32px 56px;
   text-align: left;
   background: ${colors.bg};
@@ -143,25 +149,21 @@ const Tag = styled.p`
   letter-spacing: 0.2em;
   color: ${colors.muted};
   font-weight: 400;
-  margin: 0;
   font-style: italic;
-`;
-
-const Divider = styled.hr`
-  width: 100%;
-  border: none;
-  border-top: 1px solid ${colors.line};
-  margin: 0;
 `;
 
 const Details = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 4px;
 `;
 
-const DateTime = styled.p`
-  margin: 0;
+const DateTime = styled.b`
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
   font-size: 15px;
   color: ${colors.muted};
 `;
@@ -225,14 +227,46 @@ const Cover = ({ info }: Props) => {
             onLoad={() => setLoadedCount((n) => n + 1)}
           />
         ))}
-        <Arrow type="button" $direction="prev" onClick={goPrev} aria-label="이전">
-          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-            <path fillRule="evenodd" clipRule="evenodd" d="M0.390524 7.60946C-0.130175 7.08876 -0.130175 6.24454 0.390524 5.72384L5.72386 0.390505C6.24456 -0.130195 7.08878 -0.130195 7.60948 0.390505C8.13017 0.911203 8.13017 1.75542 7.60948 2.27612L3.21895 6.66665L7.60948 11.0572C8.13017 11.5779 8.13017 12.4221 7.60948 12.9428C7.08878 13.4635 6.24456 13.4635 5.72386 12.9428L0.390524 7.60946Z" fill="#fff"/>
+        <Arrow
+          type="button"
+          $direction="prev"
+          onClick={goPrev}
+          aria-label="이전"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="14"
+            viewBox="0 0 8 14"
+            fill="none"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M0.390524 7.60946C-0.130175 7.08876 -0.130175 6.24454 0.390524 5.72384L5.72386 0.390505C6.24456 -0.130195 7.08878 -0.130195 7.60948 0.390505C8.13017 0.911203 8.13017 1.75542 7.60948 2.27612L3.21895 6.66665L7.60948 11.0572C8.13017 11.5779 8.13017 12.4221 7.60948 12.9428C7.08878 13.4635 6.24456 13.4635 5.72386 12.9428L0.390524 7.60946Z"
+              fill="#fff"
+            />
           </svg>
         </Arrow>
-        <Arrow type="button" $direction="next" onClick={goNext} aria-label="다음">
-          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-            <path fillRule="evenodd" clipRule="evenodd" d="M7.60948 5.72384C8.13017 6.24454 8.13017 7.08876 7.60948 7.60946L2.27614 12.9428C1.75544 13.4635 0.911224 13.4635 0.390526 12.9428C-0.130173 12.4221 -0.130173 11.5779 0.390526 11.0572L4.78105 6.66665L0.390526 2.27612C-0.130173 1.75542 -0.130173 0.911203 0.390526 0.390505C0.911224 -0.130195 1.75544 -0.130195 2.27614 0.390505L7.60948 5.72384Z" fill="#fff"/>
+        <Arrow
+          type="button"
+          $direction="next"
+          onClick={goNext}
+          aria-label="다음"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="14"
+            viewBox="0 0 8 14"
+            fill="none"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M7.60948 5.72384C8.13017 6.24454 8.13017 7.08876 7.60948 7.60946L2.27614 12.9428C1.75544 13.4635 0.911224 13.4635 0.390526 12.9428C-0.130173 12.4221 -0.130173 11.5779 0.390526 11.0572L4.78105 6.66665L0.390526 2.27612C-0.130173 1.75542 -0.130173 0.911203 0.390526 0.390505C0.911224 -0.130195 1.75544 -0.130195 2.27614 0.390505L7.60948 5.72384Z"
+              fill="#fff"
+            />
           </svg>
         </Arrow>
         <Dots>
@@ -251,13 +285,19 @@ const Cover = ({ info }: Props) => {
         <Names>
           {info.groom.name} <AndSymbol>&amp;</AndSymbol> {info.bride.name}
         </Names>
-        <Tag>We are getting married</Tag>
-        <Divider />
+        <Tag>
+          <b>We are getting married</b>
+        </Tag>
+        ᥫ᭡ˎˊ˗
         <Details>
           <DateTime>
             {d.getMonth() + 1}월 {d.getDate()}일 {weekday}요일 {timeText}
           </DateTime>
-          <Venue>{info.venue.hall ? `${info.venue.name} ${info.venue.hall}` : info.venue.name}</Venue>
+          <Venue>
+            {info.venue.hall
+              ? `${info.venue.name} ${info.venue.hall}`
+              : info.venue.name}
+          </Venue>
         </Details>
       </InfoBlock>
     </CoverSection>

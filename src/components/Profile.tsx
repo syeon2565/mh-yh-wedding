@@ -119,8 +119,8 @@ const DaysEndpoint = styled.div`
   z-index: 1;
 `;
 
-const DaysDot = styled('span', {
-  shouldForwardProp: (prop) => prop !== '$today',
+const DaysDot = styled("span", {
+  shouldForwardProp: (prop) => prop !== "$today",
 })<{ $today?: boolean }>`
   width: 10px;
   height: 10px;
@@ -171,7 +171,13 @@ const DaysHearts = styled.span`
   padding: 0 8px;
 `;
 
-const ProfileCard = ({ role, person }: { role: "신랑" | "신부"; person: Person }) => (
+const ProfileCard = ({
+  role,
+  person,
+}: {
+  role: "신랑" | "신부";
+  person: Person;
+}) => (
   <Card>
     <PhotoWrap>
       <Photo
@@ -218,7 +224,9 @@ const Profile = ({ info }: Props) => {
 
       <Days>
         <DaysCount>
-          {days.toLocaleString()}일 {hours}시간 {minutes}분 {seconds}초
+          <b>
+            {days.toLocaleString()}일 {hours}시간 {minutes}분 {seconds}초
+          </b>
         </DaysCount>
         <DaysTimeline>
           <DaysEndpoint>
@@ -227,7 +235,7 @@ const Profile = ({ info }: Props) => {
             <DaysDate>{fmt(start)}</DaysDate>
           </DaysEndpoint>
           <DaysLine>
-            <DaysHearts>💙🩷</DaysHearts>
+            <DaysHearts>⌁❤︎⌁﻿</DaysHearts>
           </DaysLine>
           <DaysEndpoint>
             <DaysDot $today />
